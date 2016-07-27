@@ -1,48 +1,47 @@
 //
-//  ExampleViewController.swift
+//  ProjectsViewController.swift
 //  Example
 //
-//  Created by Xin Hong on 16/7/27.
+//  Created by Xin Hong on 16/7/28.
 //  Copyright © 2016年 Teambition. All rights reserved.
 //
 
 import UIKit
 import ObjectMapper
-import ManagedObjectAdapter
 
-class ExampleViewController: UITableViewController {
-    var organizations = [Organization]()
+class ProjectsViewController: UITableViewController {
+    var projects = [Project]()
 
-    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         loadData()
     }
 
-    // MARK: - Helper
+    // MARK: - Life cycle
     private func setupUI() {
-        navigationItem.title = "Example"
+        navigationItem.title = "Projects"
         tableView.tableFooterView = UIView()
     }
 
+    // MARK: - Helper
     private func loadData() {
-        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("organizations", ofType: "json") ?? NSBundle.mainBundle().pathForResource("organizations", ofType: "json") else {
+        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("projects", ofType: "json") ?? NSBundle.mainBundle().pathForResource("projects", ofType: "json") else {
             return
         }
         print(path)
-
+        
         guard let jsonData = NSData(contentsOfFile: path) else {
             return
         }
         guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [AnyObject] else {
             return
         }
-
-        guard let organizations = Mapper<Organization>().mapArray(json) else {
+        
+        guard let projects = Mapper<Project>().mapArray(json) else {
             return
         }
-        self.organizations = organizations
+        self.projects = projects
         tableView.reloadData()
     }
 
@@ -52,23 +51,23 @@ class ExampleViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return organizations.count
+        return projects.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("OrganizationCell")
+        var cell = tableView.dequeueReusableCellWithIdentifier("ProjectCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "OrganizationCell")
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: "ProjectCell")
         }
-        let organization = organizations[indexPath.row]
-        cell?.textLabel?.text = organization.name
-        cell?.detailTextLabel?.text = String(organization.projects?.count ?? 0)
+        let project = projects[indexPath.row]
+        cell?.textLabel?.text = project.name
+        cell?.detailTextLabel?.text = project.organization?.name
         return cell!
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let projectsViewController = ProjectsViewController()
-        navigationController?.pushViewController(projectsViewController, animated: true)
+        let eventsViewController = EventsViewController()
+        navigationController?.pushViewController(eventsViewController, animated: true)
     }
 }

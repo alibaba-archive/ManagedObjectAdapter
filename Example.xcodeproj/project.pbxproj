@@ -13,6 +13,20 @@
 		D3283CB51D48812300E1B445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3283CB41D48812300E1B445 /* Assets.xcassets */; };
 		D3283CC51D4883AF00E1B445 /* ManagedObjectAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; };
 		D3283CC61D4883AF00E1B445 /* ManagedObjectAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D35FFC381D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D35FFC361D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld */; };
+		D3828F3C1D4A0E7E00F70E02 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F391D4A0E7E00F70E02 /* events.json */; };
+		D3828F3D1D4A0E7E00F70E02 /* organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F3A1D4A0E7E00F70E02 /* organizations.json */; };
+		D3828F3E1D4A0E7E00F70E02 /* projects.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F3B1D4A0E7E00F70E02 /* projects.json */; };
+		D3828F401D4A0ECF00F70E02 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F3F1D4A0ECF00F70E02 /* Event.swift */; };
+		D3828F421D4A0EE300F70E02 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F411D4A0EE300F70E02 /* Organization.swift */; };
+		D3828F441D4A0EFA00F70E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F431D4A0EFA00F70E02 /* Project.swift */; };
+		D3828F461D4A102400F70E02 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F451D4A102400F70E02 /* ModelObject.swift */; };
+		D3828F481D4A10DA00F70E02 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = D3828F471D4A10DA00F70E02 /* Cartfile */; };
+		D3828F4B1D4A125C00F70E02 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */; };
+		D3828F4D1D4A192000F70E02 /* Recurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F4C1D4A192000F70E02 /* Recurrence.swift */; };
+		D3828F4F1D4A26CE00F70E02 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */; };
+		D3828F511D4A280E00F70E02 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F501D4A280E00F70E02 /* EventsViewController.swift */; };
+		D3828F531D4A321E00F70E02 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F521D4A321E00F70E02 /* ManagedObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +51,20 @@
 		D3283CB41D48812300E1B445 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3283CB91D48812300E1B445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = ManagedObjectAdapter.framework; path = "/Users/hongxin/Library/Developer/Xcode/DerivedData/ManagedObjectAdapter-chxqragpqvwakbcjbjsfbvtqliio/Build/Products/Debug-iphoneos/ManagedObjectAdapter.framework"; sourceTree = "<absolute>"; };
+		D35FFC371D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ManagedObjectAdapter.xcdatamodel; sourceTree = "<group>"; };
+		D3828F391D4A0E7E00F70E02 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
+		D3828F3A1D4A0E7E00F70E02 /* organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = organizations.json; sourceTree = "<group>"; };
+		D3828F3B1D4A0E7E00F70E02 /* projects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = projects.json; sourceTree = "<group>"; };
+		D3828F3F1D4A0ECF00F70E02 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		D3828F411D4A0EE300F70E02 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
+		D3828F431D4A0EFA00F70E02 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		D3828F451D4A102400F70E02 /* ModelObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelObject.swift; sourceTree = "<group>"; };
+		D3828F471D4A10DA00F70E02 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ObjectMapper.framework; path = Example/Carthage/Build/iOS/ObjectMapper.framework; sourceTree = "<group>"; };
+		D3828F4C1D4A192000F70E02 /* Recurrence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recurrence.swift; sourceTree = "<group>"; };
+		D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		D3828F501D4A280E00F70E02 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		D3828F521D4A321E00F70E02 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +73,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3283CC51D4883AF00E1B445 /* ManagedObjectAdapter.framework in Frameworks */,
+				D3828F4B1D4A125C00F70E02 /* ObjectMapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +83,7 @@
 		D3283CA11D48812300E1B445 = {
 			isa = PBXGroup;
 			children = (
+				D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */,
 				D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */,
 				D3283CAC1D48812300E1B445 /* Example */,
 				D3283CAB1D48812300E1B445 /* Products */,
@@ -71,13 +101,42 @@
 		D3283CAC1D48812300E1B445 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				D3828F471D4A10DA00F70E02 /* Cartfile */,
+				D3828F371D4A0E4B00F70E02 /* Resources */,
+				D3828F381D4A0E5C00F70E02 /* Models */,
 				D3283CAD1D48812300E1B445 /* AppDelegate.swift */,
 				D3283CAF1D48812300E1B445 /* ExampleViewController.swift */,
+				D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */,
+				D3828F501D4A280E00F70E02 /* EventsViewController.swift */,
 				D3283CB11D48812300E1B445 /* Main.storyboard */,
 				D3283CB41D48812300E1B445 /* Assets.xcassets */,
+				D35FFC361D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld */,
 				D3283CB91D48812300E1B445 /* Info.plist */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		D3828F371D4A0E4B00F70E02 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3828F3A1D4A0E7E00F70E02 /* organizations.json */,
+				D3828F3B1D4A0E7E00F70E02 /* projects.json */,
+				D3828F391D4A0E7E00F70E02 /* events.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D3828F381D4A0E5C00F70E02 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D3828F451D4A102400F70E02 /* ModelObject.swift */,
+				D3828F521D4A321E00F70E02 /* ManagedObject.swift */,
+				D3828F411D4A0EE300F70E02 /* Organization.swift */,
+				D3828F431D4A0EFA00F70E02 /* Project.swift */,
+				D3828F3F1D4A0ECF00F70E02 /* Event.swift */,
+				D3828F4C1D4A192000F70E02 /* Recurrence.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,6 +150,7 @@
 				D3283CA71D48812300E1B445 /* Frameworks */,
 				D3283CA81D48812300E1B445 /* Resources */,
 				D3283CC71D4883AF00E1B445 /* Embed Frameworks */,
+				D3828F491D4A114300F70E02 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -139,20 +199,50 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3828F481D4A10DA00F70E02 /* Cartfile in Resources */,
 				D3283CB51D48812300E1B445 /* Assets.xcassets in Resources */,
 				D3283CB31D48812300E1B445 /* Main.storyboard in Resources */,
+				D3828F3E1D4A0E7E00F70E02 /* projects.json in Resources */,
+				D3828F3D1D4A0E7E00F70E02 /* organizations.json in Resources */,
+				D3828F3C1D4A0E7E00F70E02 /* events.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D3828F491D4A114300F70E02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Example/Carthage/Build/iOS/ObjectMapper.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D3283CA61D48812300E1B445 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3828F401D4A0ECF00F70E02 /* Event.swift in Sources */,
+				D3828F4D1D4A192000F70E02 /* Recurrence.swift in Sources */,
+				D3828F531D4A321E00F70E02 /* ManagedObject.swift in Sources */,
+				D3828F461D4A102400F70E02 /* ModelObject.swift in Sources */,
+				D3828F4F1D4A26CE00F70E02 /* ProjectsViewController.swift in Sources */,
 				D3283CB01D48812300E1B445 /* ExampleViewController.swift in Sources */,
 				D3283CAE1D48812300E1B445 /* AppDelegate.swift in Sources */,
+				D3828F421D4A0EE300F70E02 /* Organization.swift in Sources */,
+				D35FFC381D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld in Sources */,
+				D3828F441D4A0EFA00F70E02 /* Project.swift in Sources */,
+				D3828F511D4A280E00F70E02 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +349,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapter.Example;
@@ -270,6 +364,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Example/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapter.Example;
@@ -299,6 +397,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D35FFC361D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D35FFC371D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodel */,
+			);
+			currentVersion = D35FFC371D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodel */;
+			path = ManagedObjectAdapter.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D3283CA21D48812300E1B445 /* Project object */;
 }

@@ -1,0 +1,30 @@
+[
+ {
+ "_id": "5675756990",
+ "_projectId": "Project123",
+ "title": "iOS Meeting",
+ "isFavorite": false,
+ "created": "2016-06-23T07:34:55.000Z",
+ "updated": "2016-06-23T08:33:51.780Z",
+ "_likesCount": 10,
+ "alert": "https://www.teambition.com",
+ "recurrence": {
+     "rule": "ABCDEFG",
+     "count": 2
+     }
+ },
+ {
+ "_id": "2245678900",
+ "_projectId": "Project234",
+ "title": "Android Meeting",
+ "isFavorite": true,
+ "created": "2016-07-01T07:00:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_likesCount": 9,
+ "alert": "https://www.teambition.com",
+ "recurrence": {
+     "rule": "HIJKLMN",
+     "count": 5
+     }
+ }
+]

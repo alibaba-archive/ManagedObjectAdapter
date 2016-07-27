@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 7.0">
+    <entity name="Event" representedClassName="_Event" syncable="YES">
+        <attribute name="alert" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+        <attribute name="likesCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="projectID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="recurrence" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="events" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <entity name="Organization" representedClassName="_Organization" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="teamsCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="organization" inverseEntity="Project" syncable="YES"/>
+    </entity>
+    <entity name="Project" representedClassName="_Project" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isPublic" attributeType="Boolean" defaultValueString="0" syncable="YES"/>
+        <attribute name="isStar" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="logo" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="project" inverseEntity="Event" syncable="YES"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="projects" inverseEntity="Organization" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Event" positionX="151" positionY="9" width="128" height="195"/>
+        <element name="Organization" positionX="-306" positionY="9" width="128" height="150"/>
+        <element name="Project" positionX="-74" positionY="9" width="128" height="195"/>
+    </elements>
+</model>

@@ -1,17 +1,16 @@
 //
-//  ExampleViewController.swift
+//  EventsViewController.swift
 //  Example
 //
-//  Created by Xin Hong on 16/7/27.
+//  Created by Xin Hong on 16/7/28.
 //  Copyright © 2016年 Teambition. All rights reserved.
 //
 
 import UIKit
 import ObjectMapper
-import ManagedObjectAdapter
 
-class ExampleViewController: UITableViewController {
-    var organizations = [Organization]()
+class EventsViewController: UITableViewController {
+    var events = [Event]()
 
     // MARK: - Life cycle
     override func viewDidLoad() {
@@ -22,27 +21,27 @@ class ExampleViewController: UITableViewController {
 
     // MARK: - Helper
     private func setupUI() {
-        navigationItem.title = "Example"
+        navigationItem.title = "Events"
         tableView.tableFooterView = UIView()
     }
 
     private func loadData() {
-        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("organizations", ofType: "json") ?? NSBundle.mainBundle().pathForResource("organizations", ofType: "json") else {
+        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("events", ofType: "json") ?? NSBundle.mainBundle().pathForResource("events", ofType: "json") else {
             return
         }
         print(path)
-
+        
         guard let jsonData = NSData(contentsOfFile: path) else {
             return
         }
         guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [AnyObject] else {
             return
         }
-
-        guard let organizations = Mapper<Organization>().mapArray(json) else {
+        
+        guard let events = Mapper<Event>().mapArray(json) else {
             return
         }
-        self.organizations = organizations
+        self.events = events
         tableView.reloadData()
     }
 
@@ -52,23 +51,21 @@ class ExampleViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return organizations.count
+        return events.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("OrganizationCell")
+        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "OrganizationCell")
+            cell = UITableViewCell(style: .Value1, reuseIdentifier: "EventCell")
         }
-        let organization = organizations[indexPath.row]
-        cell?.textLabel?.text = organization.name
-        cell?.detailTextLabel?.text = String(organization.projects?.count ?? 0)
+        let event = events[indexPath.row]
+        cell?.textLabel?.text = event.title
+        cell?.detailTextLabel?.text = event.recurrence?.rule
         return cell!
     }
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let projectsViewController = ProjectsViewController()
-        navigationController?.pushViewController(projectsViewController, animated: true)
     }
 }

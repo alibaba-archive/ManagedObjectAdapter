@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D3283CC31D4881D900E1B445 /* ManagedObjectAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */; };
+		D3283CC91D48876C00E1B445 /* ManagedObjectSerializing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D3283C961D4880C500E1B445 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ManagedObjectAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3283CC01D4881BB00E1B445 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectAdapter.swift; sourceTree = "<group>"; };
+		D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectSerializing.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 		D3283C981D4880C500E1B445 /* ManagedObjectAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */,
 				D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */,
 			);
 			path = ManagedObjectAdapter;
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3283CC91D48876C00E1B445 /* ManagedObjectSerializing.swift in Sources */,
 				D3283CC31D4881D900E1B445 /* ManagedObjectAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

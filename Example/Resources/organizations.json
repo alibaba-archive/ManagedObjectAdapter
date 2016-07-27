@@ -1,0 +1,50 @@
+[
+ {
+ "_id": "1234545566",
+ "name": "Teambition",
+ "logo": "https://www.teambition.com",
+ "created": "2013-04-23T06:34:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_teamsCount": 10,
+ "projects": [
+              {
+               "_id": "4567567658",
+               "name": "Development",
+               "logo": "https://www.teambition.com",
+               "created": "2015-07-23T06:34:55.000Z",
+               "updated": "2016-07-01T08:33:51.780Z",
+              },
+              {
+               "_id": "5645667869",
+               "name": "Design",
+               "logo": "https://www.teambition.com",
+               "created": "2015-07-23T06:34:55.000Z",
+               "updated": "2016-07-01T08:33:51.780Z",
+              },
+              {
+               "_id": "5645786869",
+               "name": "Sales",
+               "logo": "https://www.teambition.com",
+               "created": "2015-07-23T06:34:55.000Z",
+               "updated": "2016-07-01T08:33:51.780Z",
+               }
+              ]
+ },
+ {
+ "_id": "1234353545",
+ "name": "Teambition iOS",
+ "logo": "https://www.teambition.com",
+ "created": "2014-09-11T06:34:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_teamsCount": 3,
+ "projects": [
+              {
+               "_id": "4567567658",
+               "name": "Development",
+               "logo": "https://www.teambition.com",
+               "created": "2015-07-23T06:34:55.000Z",
+               "updated": "2016-07-01T08:33:51.780Z",
+               }
+              ]
+ }
+]

@@ -1,0 +1,53 @@
+[
+ {
+ "_id": "5675734567",
+ "name": "Development",
+ "logo": "https://www.teambition.com",
+ "isStar": true,
+ "isPublic": false,
+ "created": "2015-07-23T06:34:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_unreadCount": 33,
+ "organization": {
+     "_id": "1234505566",
+     "name": "Microsoft",
+     "logo": "https://www.teambition.com",
+     "created": "2013-04-23T06:34:55.000Z",
+     "updated": "2016-07-01T08:33:51.780Z"
+     }
+ },
+ {
+ "_id": "1257899544",
+ "name": "Design",
+ "logo": "https://www.teambition.com",
+ "isStar": true,
+ "isPublic": false,
+ "created": "2015-08-23T06:34:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_unreadCount": 20,
+ "organization": {
+     "_id": "1234505516",
+     "name": "Facebook",
+     "logo": "https://www.teambition.com",
+     "created": "2013-04-23T06:34:55.000Z",
+     "updated": "2016-07-01T08:33:51.780Z"
+     }
+ },
+ {
+ "_id": "1237066523",
+ "name": "Personal",
+ "logo": "https://www.teambition.com",
+ "isStar": true,
+ "isPublic": false,
+ "created": "2016-01-23T06:34:55.000Z",
+ "updated": "2016-07-01T08:33:51.780Z",
+ "_unreadCount": 7,
+ "organization": {
+     "_id": "1239505566",
+     "name": "Google",
+     "logo": "https://www.teambition.com",
+     "created": "2013-04-23T06:34:55.000Z",
+     "updated": "2016-07-01T08:33:51.780Z"
+     }
+ },
+]
