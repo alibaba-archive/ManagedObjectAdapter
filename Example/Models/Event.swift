@@ -13,7 +13,7 @@ class Event: ModelObject {
     var projectID: String?
     var title: String?
     var isFavorite: Bool?
-    var likesCount: Int?
+    var likesCount = 0
     var alert: NSData?
     var recurrence: Recurrence?
     var project: Project?
@@ -30,6 +30,7 @@ class Event: ModelObject {
     }
 }
 
+@objc(_Event)
 class _Event: ManagedObject {
 
 }

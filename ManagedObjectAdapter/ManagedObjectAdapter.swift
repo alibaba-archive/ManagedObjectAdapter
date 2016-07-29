@@ -9,8 +9,8 @@
 import Foundation
 import CoreData
 
-public extension ManagedObjectSerializing where Self: AnyObject {
-    public static func modelFromManagedObject(managedObject: NSManagedObject) {
+public extension ManagedObjectSerializing where Self: NSObject {
+    public static func modelFromManagedObject(managedObject: NSManagedObject) -> ManagedObjectSerializing? {
         let propertyKeys = self.propertyKeys
         for (key, _) in managedObjectKeysByPropertyKey() {
             if propertyKeys.contains(key) {
@@ -27,23 +27,58 @@ public extension ManagedObjectSerializing where Self: AnyObject {
             }
             let value = managedObject.valueForKey(managedObjectKey)
         }
+
+        return nil
     }
 
-    public func toManagedObject() {
-        
-    }
+    public func toManagedObject(context: NSManagedObjectContext) -> NSManagedObject? {
+        let entityName = self.dynamicType.managedObjectEntityName()
 
-    internal func performInContext(context: NSManagedObjectContext, block: () -> Void) {
-        if context.concurrencyType == .ConfinementConcurrencyType {
-            block()
-        } else {
-            context.performBlockAndWait({
-                block()
-            })
+        var managedObject: NSManagedObject?
+        managedObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+
+        let _ = self.dynamicType.valueTransformers()
+        let managedObjectProperties = managedObject!.entity.propertiesByName
+        for key in propertyKeys {
+            guard let property = managedObjectProperties[key] else {
+                continue
+            }
+            let value = valueForKey(key)
+            if key == "name" || key == "id" || key == "teamsCount" || key == "logo" || key == "createdAt" {
+                managedObject?.setValue(value, forKey: key)
+            }
         }
+
+        return managedObject
+    }
+
+    internal static func valueTransformers() -> [String: NSValueTransformer] {
+        for key in propertyKeys {
+            let selector = selectorWithKeyPattern(key, suffix: "EntityAttributeTransformer")
+            print(selector)
+        }
+        return [:]
     }
 }
 
+internal func selectorWithKeyPattern(key: String, suffix: String) -> Selector? {
+    var keyLength = key.maximumLengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+    let suffixLength = strlen(suffix)
+    var selector = String()
+    var buffer = [UInt8](selector.utf8)
+    let range = key.startIndex..<key.startIndex.advancedBy(key.characters.count)
+    let success = key.getBytes(&buffer,
+                               maxLength: keyLength,
+                               usedLength: &keyLength,
+                               encoding: NSUTF8StringEncoding,
+                               options: [],
+                               range: range,
+                               remainingRange: nil)
+    guard success else {
+        return nil
+    }
+    return sel_registerName(selector)
+}
 
 //public struct ManagedObjectAdapter {
 //    public private(set) var modelClass: AnyClass

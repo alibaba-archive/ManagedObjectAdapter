@@ -27,6 +27,7 @@
 		D3828F4F1D4A26CE00F70E02 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */; };
 		D3828F511D4A280E00F70E02 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F501D4A280E00F70E02 /* EventsViewController.swift */; };
 		D3828F531D4A321E00F70E02 /* ManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F521D4A321E00F70E02 /* ManagedObject.swift */; };
+		D3D74D0F1D4B2A2C005C4436 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D74D0E1D4B2A2C005C4436 /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -65,6 +66,7 @@
 		D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		D3828F501D4A280E00F70E02 /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		D3828F521D4A321E00F70E02 /* ManagedObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObject.swift; sourceTree = "<group>"; };
+		D3D74D0E1D4B2A2C005C4436 /* CoreDataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				D3828F451D4A102400F70E02 /* ModelObject.swift */,
 				D3828F521D4A321E00F70E02 /* ManagedObject.swift */,
+				D3D74D0E1D4B2A2C005C4436 /* CoreDataManager.swift */,
 				D3828F411D4A0EE300F70E02 /* Organization.swift */,
 				D3828F431D4A0EFA00F70E02 /* Project.swift */,
 				D3828F3F1D4A0ECF00F70E02 /* Event.swift */,
@@ -236,6 +239,7 @@
 				D3828F4D1D4A192000F70E02 /* Recurrence.swift in Sources */,
 				D3828F531D4A321E00F70E02 /* ManagedObject.swift in Sources */,
 				D3828F461D4A102400F70E02 /* ModelObject.swift in Sources */,
+				D3D74D0F1D4B2A2C005C4436 /* CoreDataManager.swift in Sources */,
 				D3828F4F1D4A26CE00F70E02 /* ProjectsViewController.swift in Sources */,
 				D3283CB01D48812300E1B445 /* ExampleViewController.swift in Sources */,
 				D3283CAE1D48812300E1B445 /* AppDelegate.swift in Sources */,

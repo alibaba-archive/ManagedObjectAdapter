@@ -14,7 +14,7 @@ class Project: ModelObject {
     var logo: NSURL?
     var isPublic: Bool?
     var isStar: Bool?
-    var unreadCount: Int?
+    var unreadCount = 0
     var organization: Organization?
     var events: [Event]?
 
@@ -30,6 +30,7 @@ class Project: ModelObject {
     }
 }
 
+@objc(_Project)
 class _Project: ManagedObject {
 
 }

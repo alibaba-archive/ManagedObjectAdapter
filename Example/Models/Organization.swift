@@ -12,7 +12,7 @@ import ObjectMapper
 class Organization: ModelObject {
     var name: String?
     var logo: NSURL?
-    var teamsCount: Int?
+    var teamsCount = 0
     var projects: [Project]?
 
     override func mapping(map: Map) {
@@ -24,6 +24,7 @@ class Organization: ModelObject {
     }
 }
 
+@objc(_Organization)
 class _Organization: ManagedObject {
 
 }

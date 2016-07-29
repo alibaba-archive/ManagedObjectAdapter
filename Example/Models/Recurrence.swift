@@ -11,7 +11,7 @@ import ObjectMapper
 
 class Recurrence: ModelObject {
     var rule: String?
-    var count: Int?
+    var count = 0
 
     override func mapping(map: Map) {
         super.mapping(map)

@@ -8,11 +8,14 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class ModelObject: Mappable {
+class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
     var id: String?
     var createdAt: NSDate?
     var updatedAt: NSDate?
+
+    required override init() { }
 
     required init?(_ map: Map) { }
 
