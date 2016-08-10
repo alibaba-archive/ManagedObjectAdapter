@@ -8,36 +8,35 @@
 
 import Foundation
 
-public protocol ManagedObjectSerializing {
+public protocol ManagedObjectSerializing: AnyObject {
     init()
+    func valueForKey(key: String) -> AnyObject?
+
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
-    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass]
+    static func valueTransformersByPropertyKey() -> [String: NSValueTransformer]
+    static func propertyKeysForManagedObjectUniquing() -> Set<String>
 }
 
-public extension ManagedObjectSerializing where Self: AnyObject {
+public extension ManagedObjectSerializing {
     static func managedObjectEntityName() -> String {
         return String(self)
     }
 
     static func managedObjectKeysByPropertyKey() -> [String: String] {
-        var managedObjectKeys = [String: String]()
-        for property in propertyKeys {
-            managedObjectKeys.updateValue(property, forKey: property)
-        }
-        return managedObjectKeys
-    }
-
-    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
         return [:]
     }
+
+    static func valueTransformersByPropertyKey() -> [String: NSValueTransformer] {
+        return [:]
+    }
+
+    static func propertyKeysForManagedObjectUniquing() -> Set<String> {
+        return []
+    }
 }
 
-internal struct AssociatedKeys {
-    static var cachedPropertyKeys = "ManagedObjectAdapterCachedPropertyKeys"
-}
-
-public extension ManagedObjectSerializing where Self: AnyObject {
+public extension ManagedObjectSerializing {
     public static var propertyKeys: Set<String> {
         if let cachedKeys = objc_getAssociatedObject(self, &AssociatedKeys.cachedPropertyKeys) as? Set<String> {
             return cachedKeys

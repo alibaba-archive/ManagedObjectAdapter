@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D304AAA31D5B0A7400013742 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D304AAA21D5B0A7400013742 /* Constants.swift */; };
 		D3283CC31D4881D900E1B445 /* ManagedObjectAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */; };
 		D3283CC91D48876C00E1B445 /* ManagedObjectSerializing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D304AAA21D5B0A7400013742 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D3283C961D4880C500E1B445 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ManagedObjectAdapter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3283CC01D4881BB00E1B445 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectAdapter.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 		D3283C981D4880C500E1B445 /* ManagedObjectAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				D304AAA21D5B0A7400013742 /* Constants.swift */,
 				D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */,
 				D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */,
 			);
@@ -143,6 +146,7 @@
 			files = (
 				D3283CC91D48876C00E1B445 /* ManagedObjectSerializing.swift in Sources */,
 				D3283CC31D4881D900E1B445 /* ManagedObjectAdapter.swift in Sources */,
+				D304AAA31D5B0A7400013742 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

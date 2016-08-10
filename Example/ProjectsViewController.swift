@@ -8,6 +8,8 @@
 
 import UIKit
 import ObjectMapper
+import CoreData
+import ManagedObjectAdapter
 
 class ProjectsViewController: UITableViewController {
     var projects = [Project]()
@@ -16,6 +18,11 @@ class ProjectsViewController: UITableViewController {
         super.viewDidLoad()
         setupUI()
         loadData()
+
+        let project = projects.first
+        let moProject = project?.toManagedObject(CoreDataManager.context) as? _Project
+        print("\n********** Transferred ManagedObject **********")
+        print(moProject)
     }
 
     // MARK: - Life cycle

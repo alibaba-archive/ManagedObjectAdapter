@@ -8,13 +8,15 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class Project: ModelObject {
+class Project: ModelObject, ManagedObjectSerializing {
     var name: String?
     var logo: NSURL?
-    var isPublic: Bool?
-    var isStar: Bool?
+    var isPublic: Bool = false
+    var isStar: Bool = false
     var unreadCount = 0
+    var org: Organization?
     var organization: Organization?
     var events: [Event]?
 
@@ -25,8 +27,13 @@ class Project: ModelObject {
         isStar <- map["isStar"]
         isPublic <- map["isPublic"]
         unreadCount <- map["_unreadCount"]
+        org <- map["org"]
         organization <- map["organization"]
         events <- map["events"]
+    }
+
+    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+        return ["org": OrignizationTransformer()]
     }
 }
 

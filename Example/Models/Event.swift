@@ -8,8 +8,9 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class Event: ModelObject {
+class Event: ModelObject, ManagedObjectSerializing {
     var projectID: String?
     var title: String?
     var isFavorite: Bool?
@@ -27,6 +28,10 @@ class Event: ModelObject {
         alert <- map["alert"]
         recurrence <- map["recurrence"]
         project <- map["project"]
+    }
+
+    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+        return ["recurrence": RecurrenceTransformer()]
     }
 }
 

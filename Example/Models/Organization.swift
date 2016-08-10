@@ -8,11 +8,13 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class Organization: ModelObject {
+class Organization: ModelObject, ManagedObjectSerializing {
     var name: String?
     var logo: NSURL?
     var teamsCount = 0
+    var publicProjects: [Project]?
     var projects: [Project]?
 
     override func mapping(map: Map) {
@@ -20,7 +22,12 @@ class Organization: ModelObject {
         name <- map["name"]
         logo <- (map["logo"], URLTransform())
         teamsCount <- map["_teamsCount"]
+        publicProjects <- map["publicProjects"]
         projects <- map["projects"]
+    }
+
+    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+        return ["publicProjects": ProjectsArrayTransformer()]
     }
 }
 

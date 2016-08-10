@@ -8,9 +8,8 @@
 
 import Foundation
 import ObjectMapper
-import ManagedObjectAdapter
 
-class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
+class ModelObject: NSObject, Mappable {
     var id: String?
     var createdAt: NSDate?
     var updatedAt: NSDate?

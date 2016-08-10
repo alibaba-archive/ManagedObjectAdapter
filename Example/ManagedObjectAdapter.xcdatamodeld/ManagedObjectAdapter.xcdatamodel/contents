@@ -17,6 +17,7 @@
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="publicProjects" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="teamsCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="organization" inverseEntity="Project" syncable="YES"/>
@@ -28,6 +29,7 @@
         <attribute name="isStar" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="logo" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="org" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="unreadCount" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="project" inverseEntity="Event" syncable="YES"/>
@@ -35,7 +37,7 @@
     </entity>
     <elements>
         <element name="Event" positionX="151" positionY="9" width="128" height="195"/>
-        <element name="Organization" positionX="-306" positionY="9" width="128" height="150"/>
-        <element name="Project" positionX="-74" positionY="9" width="128" height="195"/>
+        <element name="Organization" positionX="-306" positionY="9" width="128" height="165"/>
+        <element name="Project" positionX="-74" positionY="9" width="128" height="210"/>
     </elements>
 </model>

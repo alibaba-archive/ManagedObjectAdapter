@@ -8,8 +8,9 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class Recurrence: ModelObject {
+class Recurrence: ModelObject, ManagedObjectSerializing {
     var rule: String?
     var count = 0
 

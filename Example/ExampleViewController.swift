@@ -26,17 +26,17 @@ class ExampleViewController: UITableViewController {
         print("\n********** Transferred ManagedObject **********")
         print(moOrg)
 
-        let context = CoreDataManager.context
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName(Organization.managedObjectEntityName(), inManagedObjectContext: context)!
-        fetchRequest.entity = entity
-        do {
-            let organization = try context.executeFetchRequest(fetchRequest).first as? ManagedObject
-            print("\n********** Local ManagedObject **********")
-            print(organization)
-        } catch {
-
-        }
+//        let context = CoreDataManager.context
+//        let fetchRequest = NSFetchRequest()
+//        let entity = NSEntityDescription.entityForName(Organization.managedObjectEntityName(), inManagedObjectContext: context)!
+//        fetchRequest.entity = entity
+//        do {
+//            let organization = try context.executeFetchRequest(fetchRequest).first as? ManagedObject
+//            print("\n********** Local ManagedObject **********")
+//            print(organization)
+//        } catch {
+//
+//        }
     }
 
     // MARK: - Helper

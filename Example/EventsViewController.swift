@@ -8,6 +8,8 @@
 
 import UIKit
 import ObjectMapper
+import CoreData
+import ManagedObjectAdapter
 
 class EventsViewController: UITableViewController {
     var events = [Event]()
@@ -17,6 +19,11 @@ class EventsViewController: UITableViewController {
         super.viewDidLoad()
         setupUI()
         loadData()
+
+        let event = events.first
+        let moEvent = event?.toManagedObject(CoreDataManager.context) as? _Event
+        print("\n********** Transferred ManagedObject **********")
+        print(moEvent)
     }
 
     // MARK: - Helper
