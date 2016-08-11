@@ -11,10 +11,12 @@ import Foundation
 public protocol ManagedObjectSerializing: AnyObject {
     init()
     func valueForKey(key: String) -> AnyObject?
+    func setValue(value: AnyObject?, forKey key: String)
 
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
     static func valueTransformersByPropertyKey() -> [String: NSValueTransformer]
+    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass]
     static func propertyKeysForManagedObjectUniquing() -> Set<String>
 }
 
@@ -28,6 +30,10 @@ public extension ManagedObjectSerializing {
     }
 
     static func valueTransformersByPropertyKey() -> [String: NSValueTransformer] {
+        return [:]
+    }
+
+    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
         return [:]
     }
 
@@ -60,18 +66,3 @@ public extension ManagedObjectSerializing {
         return Set(keys)
     }
 }
-
-//public extension ManagedObjectSerializing where Self: AnyObject {
-//    public static var propertyKeys: [String] {
-//        var count: UInt32 = 0
-//        let propertyList = class_copyPropertyList(self, &count)
-//        var propertyNames = [String]()
-//        for index in 0..<Int(count) {
-//            let property: objc_property_t = propertyList[index]
-//            if let propertyName = String(UTF8String: property_getName(property)) {
-//                propertyNames.append(propertyName)
-//            }
-//        }
-//        return propertyNames
-//    }
-//}

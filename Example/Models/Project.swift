@@ -35,9 +35,27 @@ class Project: ModelObject, ManagedObjectSerializing {
     static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
         return ["org": OrignizationTransformer()]
     }
+
+    static func propertyKeysForManagedObjectUniquing() -> Set<String> {
+        return ["id"]
+    }
+
+    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
+        return ["organization": Organization.self, "events": Event.self]
+    }
 }
 
 @objc(_Project)
 class _Project: ManagedObject {
-
+    @NSManaged var createdAt: NSDate?
+    @NSManaged var id: String?
+    @NSManaged var isPublic: NSNumber?
+    @NSManaged var isStar: NSNumber?
+    @NSManaged var logo: NSObject?
+    @NSManaged var name: String?
+    @NSManaged var org: NSObject?
+    @NSManaged var unreadCount: NSNumber?
+    @NSManaged var updatedAt: NSDate?
+    @NSManaged var events: NSSet?
+    @NSManaged var organization: _Organization?
 }

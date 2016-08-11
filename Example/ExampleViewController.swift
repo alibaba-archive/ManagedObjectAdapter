@@ -23,8 +23,17 @@ class ExampleViewController: UITableViewController {
 
         let org = organizations.first
         let moOrg = org?.toManagedObject(CoreDataManager.context) as? _Organization
+        do {
+            try CoreDataManager.context.save()
+        } catch _ {
+
+        }
         print("\n********** Transferred ManagedObject **********")
         print(moOrg)
+
+        let orgModel = Organization.modelFromManagedObject(moOrg!)
+        print("\n********** Transferred Model **********")
+        print(orgModel?.toJSON())
 
 //        let context = CoreDataManager.context
 //        let fetchRequest = NSFetchRequest()

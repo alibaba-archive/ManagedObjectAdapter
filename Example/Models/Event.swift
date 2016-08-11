@@ -33,9 +33,26 @@ class Event: ModelObject, ManagedObjectSerializing {
     static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
         return ["recurrence": RecurrenceTransformer()]
     }
+
+    static func propertyKeysForManagedObjectUniquing() -> Set<String> {
+        return ["id"]
+    }
+
+    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
+        return ["project": Project.self]
+    }
 }
 
 @objc(_Event)
 class _Event: ManagedObject {
-
+    @NSManaged var alert: NSData?
+    @NSManaged var createdAt: NSDate?
+    @NSManaged var id: String?
+    @NSManaged var isFavorite: NSNumber?
+    @NSManaged var likesCount: NSNumber?
+    @NSManaged var projectID: String?
+    @NSManaged var recurrence: NSObject?
+    @NSManaged var title: String?
+    @NSManaged var updatedAt: NSDate?
+    @NSManaged var project: _Project?
 }

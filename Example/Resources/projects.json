@@ -1,6 +1,6 @@
 [
  {
- "_id": "5675734567",
+ "_id": "project1",
  "name": "Development",
  "logo": "https://www.teambition.com",
  "isStar": true,
@@ -9,14 +9,14 @@
  "updated": "2016-07-01T08:33:51.780Z",
  "_unreadCount": 33,
  "org": {
-     "_id": "1234505566",
+     "_id": "projectOrg1",
      "name": "Microsoft",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",
      "updated": "2016-07-01T08:33:51.780Z"
  },
  "organization": {
-     "_id": "1234505566",
+     "_id": "projectOrganization1",
      "name": "Microsoft",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",
@@ -24,7 +24,7 @@
      }
  },
  {
- "_id": "1257899544",
+ "_id": "project2",
  "name": "Design",
  "logo": "https://www.teambition.com",
  "isStar": true,
@@ -33,14 +33,14 @@
  "updated": "2016-07-01T08:33:51.780Z",
  "_unreadCount": 20,
  "org": {
-     "_id": "1234505566",
+     "_id": "projectOrg2",
      "name": "Microsoft",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",
      "updated": "2016-07-01T08:33:51.780Z"
  },
  "organization": {
-     "_id": "1234505516",
+     "_id": "projectOrganization2",
      "name": "Facebook",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",
@@ -48,7 +48,7 @@
      }
  },
  {
- "_id": "1237066523",
+ "_id": "project3",
  "name": "Personal",
  "logo": "https://www.teambition.com",
  "isStar": true,
@@ -57,14 +57,14 @@
  "updated": "2016-07-01T08:33:51.780Z",
  "_unreadCount": 7,
  "org": {
-     "_id": "1234505566",
+     "_id": "projectOrg3",
      "name": "Microsoft",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",
      "updated": "2016-07-01T08:33:51.780Z"
  },
  "organization": {
-     "_id": "1239505566",
+     "_id": "projectOrganization3",
      "name": "Google",
      "logo": "https://www.teambition.com",
      "created": "2013-04-23T06:34:55.000Z",

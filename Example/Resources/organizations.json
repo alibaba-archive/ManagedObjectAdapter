@@ -1,6 +1,6 @@
 [
  {
- "_id": "1234545566",
+ "_id": "organization1",
  "name": "Teambition",
  "logo": "https://www.teambition.com",
  "created": "2013-04-23T06:34:55.000Z",
@@ -8,7 +8,7 @@
  "_teamsCount": 10,
  "publicProjects": [
                    {
-                   "_id": "4567507658",
+                   "_id": "publicProject1",
                    "name": "Development",
                    "logo": "https://www.teambition.com",
                    "created": "2015-07-23T06:34:55.000Z",
@@ -17,21 +17,21 @@
                    ],
  "projects": [
               {
-               "_id": "4567567658",
+               "_id": "organizationProject1",
                "name": "Development",
                "logo": "https://www.teambition.com",
                "created": "2015-07-23T06:34:55.000Z",
                "updated": "2016-07-01T08:33:51.780Z",
               },
               {
-               "_id": "5645667869",
+               "_id": "organizationProject2",
                "name": "Design",
                "logo": "https://www.teambition.com",
                "created": "2015-07-23T06:34:55.000Z",
                "updated": "2016-07-01T08:33:51.780Z",
               },
               {
-               "_id": "5645786869",
+               "_id": "organizationProject3",
                "name": "Sales",
                "logo": "https://www.teambition.com",
                "created": "2015-07-23T06:34:55.000Z",
@@ -40,7 +40,7 @@
               ]
  },
  {
- "_id": "1234353545",
+ "_id": "organization2",
  "name": "Teambition iOS",
  "logo": "https://www.teambition.com",
  "created": "2014-09-11T06:34:55.000Z",
@@ -48,7 +48,7 @@
  "_teamsCount": 3,
  "publicProjects": [
                   {
-                  "_id": "4567567058",
+                  "_id": "publicProject2",
                   "name": "Development",
                   "logo": "https://www.teambition.com",
                   "created": "2015-07-23T06:34:55.000Z",
@@ -57,7 +57,7 @@
                   ],
  "projects": [
               {
-               "_id": "4567567658",
+               "_id": "organizationProject4",
                "name": "Development",
                "logo": "https://www.teambition.com",
                "created": "2015-07-23T06:34:55.000Z",

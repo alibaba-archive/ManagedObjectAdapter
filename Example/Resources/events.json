@@ -1,7 +1,7 @@
 [
  {
- "_id": "5675756990",
- "_projectId": "Project123",
+ "_id": "event1",
+ "_projectId": "project1",
  "title": "iOS Meeting",
  "isFavorite": false,
  "created": "2016-06-23T07:34:55.000Z",
@@ -14,8 +14,8 @@
      }
  },
  {
- "_id": "2245678900",
- "_projectId": "Project234",
+ "_id": "event2",
+ "_projectId": "project1",
  "title": "Android Meeting",
  "isFavorite": true,
  "created": "2016-07-01T07:00:55.000Z",
