@@ -58,8 +58,8 @@ public extension ManagedObjectSerializing {
                         let relationshipCollection = managedObject.valueForKey(managedObjectKey)
                         if let valueEnumerator = relationshipCollection?.objectEnumerator() {
                             models = valueEnumerator.allObjects.flatMap({ (object) -> AnyObject? in
-                                if let nestedManagedObject = object as? NSManagedObject, nestedClassInstance = nestedClass.initialize() as? ManagedObjectSerializing {
-                                    return nestedClassInstance.dynamicType.modelFromManagedObject(nestedManagedObject)
+                                if let nestedManagedObject = object as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
+                                    return nestedClass.modelFromManagedObject(nestedManagedObject)
                                 }
                                 return nil
                             })
@@ -78,8 +78,8 @@ public extension ManagedObjectSerializing {
                         model.setValue(models, forKey: propertyKey)
                     }
                 } else {
-                    if let nestedManagedObject = value as? NSManagedObject, nestedClassInstance = nestedClass.initialize() as? ManagedObjectSerializing {
-                        let nestedObject = nestedClassInstance.dynamicType.modelFromManagedObject(nestedManagedObject)
+                    if let nestedManagedObject = value as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
+                        let nestedObject = nestedClass.modelFromManagedObject(nestedManagedObject)
                         model.setValue(nestedObject, forKey: propertyKey)
                     }
                 }
