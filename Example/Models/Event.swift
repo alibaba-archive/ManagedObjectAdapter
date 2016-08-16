@@ -13,7 +13,7 @@ import ManagedObjectAdapter
 class Event: ModelObject, ManagedObjectSerializing {
     var projectID: String?
     var title: String?
-    var isFavorite: Bool?
+    var isFavorite: Bool = false
     var likesCount = 0
     var alert: NSData?
     var recurrence: Recurrence?

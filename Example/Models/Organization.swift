@@ -15,7 +15,7 @@ class Organization: ModelObject, ManagedObjectSerializing {
     var logo: NSURL?
     var teamsCount = 0
     var publicProjects: [Project]?
-    var projects: [Project]?
+    var projects: Set<Project>?
 
     override func mapping(map: Map) {
         super.mapping(map)

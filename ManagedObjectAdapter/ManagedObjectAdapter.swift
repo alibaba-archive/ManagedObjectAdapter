@@ -9,11 +9,23 @@
 import Foundation
 import CoreData
 
+internal func performInContext(context: NSManagedObjectContext?, block: () -> Void) {
+    guard let context = context else {
+        block()
+        return
+    }
+
+    if context.concurrencyType == .ConfinementConcurrencyType {
+        block()
+    } else {
+        context.performBlockAndWait(block)
+    }
+}
+
 public extension ManagedObjectSerializing {
     public static func modelFromManagedObject(managedObject: NSManagedObject) -> Self? {
         let propertyKeys = self.propertyKeys
         let managedObjectKeys = generateManagedObjectKeysByPropertyKey()
-        let valueTransformers = valueTransformersByPropertyKey()
 
         for (_, propertyKey) in managedObjectKeys {
             if propertyKeys.contains(propertyKey) {
@@ -22,8 +34,25 @@ public extension ManagedObjectSerializing {
             return nil
         }
 
+        let processedModels = [NSManagedObject: AnyObject]()
+
+        return modelFromManagedObject(managedObject, processedModels: processedModels)
+    }
+
+    private static func modelFromManagedObject(managedObject: NSManagedObject, processedModels: [NSManagedObject: AnyObject]) -> Self? {
+        let propertyKeys = self.propertyKeys
+        let managedObjectKeys = generateManagedObjectKeysByPropertyKey()
+        let valueTransformers = valueTransformersByPropertyKey()
+
+        if let existingModel = processedModels[managedObject] as? Self {
+            return existingModel
+        }
+
         let model = self.init()
         let managedObjectPropertyDescriptions = managedObject.entity.propertiesByName
+
+        var mutableProcessedModels = processedModels
+        mutableProcessedModels.updateValue(model, forKey: managedObject)
 
         for propertyKey in propertyKeys {
             guard let managedObjectKey = managedObjectKeys[propertyKey] else {
@@ -34,7 +63,7 @@ public extension ManagedObjectSerializing {
             }
 
             var value: AnyObject?
-            managedObject.managedObjectContext?.performBlockAndWait({
+            performInContext(managedObject.managedObjectContext, block: {
                 value = managedObject.valueForKey(managedObjectKey)
             })
 
@@ -54,12 +83,12 @@ public extension ManagedObjectSerializing {
 
                 if relationshipDescription.toMany {
                     var models: [AnyObject]?
-                    managedObject.managedObjectContext?.performBlockAndWait({
-                        let relationshipCollection = managedObject.valueForKey(managedObjectKey)
+                    performInContext(managedObject.managedObjectContext, block: {
+                        let relationshipCollection = value
                         if let valueEnumerator = relationshipCollection?.objectEnumerator() {
                             models = valueEnumerator.allObjects.flatMap({ (object) -> AnyObject? in
                                 if let nestedManagedObject = object as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
-                                    return nestedClass.modelFromManagedObject(nestedManagedObject)
+                                    return nestedClass.modelFromManagedObject(nestedManagedObject, processedModels: mutableProcessedModels)
                                 }
                                 return nil
                             })
@@ -79,7 +108,7 @@ public extension ManagedObjectSerializing {
                     }
                 } else {
                     if let nestedManagedObject = value as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
-                        let nestedObject = nestedClass.modelFromManagedObject(nestedManagedObject)
+                        let nestedObject = nestedClass.modelFromManagedObject(nestedManagedObject, processedModels: mutableProcessedModels)
                         model.setValue(nestedObject, forKey: propertyKey)
                     }
                 }
@@ -99,7 +128,7 @@ public extension ManagedObjectSerializing {
         var managedObject: NSManagedObject?
 
         if let uniquingPredicate = generateUniquingPredicate() {
-            context.performBlockAndWait({
+            performInContext(context, block: {
                 let fetchRequest = NSFetchRequest()
                 fetchRequest.entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
                 fetchRequest.predicate = uniquingPredicate
@@ -171,12 +200,23 @@ public extension ManagedObjectSerializing {
             }
         }
 
+        if let object = managedObject {
+            do {
+                try object.validateForInsert()
+            } catch {
+                performInContext(context, block: {
+                    context.deleteObject(object)
+                    managedObject = nil
+                })
+            }
+        }
+
         return managedObject
     }
 }
 
 internal extension ManagedObjectSerializing {
-    internal static func generateManagedObjectKeysByPropertyKey() -> [String: String] {
+    private static func generateManagedObjectKeysByPropertyKey() -> [String: String] {
         var managedObjectKeys = [String: String]()
         for property in propertyKeys {
             managedObjectKeys.updateValue(property, forKey: property)
@@ -189,7 +229,7 @@ internal extension ManagedObjectSerializing {
         return managedObjectKeys
     }
 
-    internal func generateUniquingPredicate() -> NSPredicate? {
+    private func generateUniquingPredicate() -> NSPredicate? {
         let uniquingPropertyKeys = self.dynamicType.propertyKeysForManagedObjectUniquing()
         let valueTransformers = self.dynamicType.valueTransformersByPropertyKey()
         let managedObjectKeys = self.dynamicType.generateManagedObjectKeysByPropertyKey()

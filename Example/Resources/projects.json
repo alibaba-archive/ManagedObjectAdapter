@@ -8,6 +8,24 @@
  "created": "2015-07-23T06:34:55.000Z",
  "updated": "2016-07-01T08:33:51.780Z",
  "_unreadCount": 33,
+ "events": [
+            {
+            "_id": "projectEvent1",
+            "_projectId": "project1",
+            "title": "iOS Testing",
+            "isFavorite": false,
+            "created": "2016-06-03T07:34:55.000Z",
+            "updated": "2016-06-03T08:33:51.780Z",
+            },
+            {
+            "_id": "projectEvent2",
+            "_projectId": "project1",
+            "title": "Android Testing",
+            "isFavorite": false,
+            "created": "2016-06-03T07:34:55.000Z",
+            "updated": "2016-06-03T08:33:51.780Z",
+            }
+            ],
  "org": {
      "_id": "projectOrg1",
      "name": "Microsoft",
@@ -56,6 +74,16 @@
  "created": "2016-01-23T06:34:55.000Z",
  "updated": "2016-07-01T08:33:51.780Z",
  "_unreadCount": 7,
+ "events": [
+            {
+            "_id": "projectEvent3",
+            "_projectId": "project1",
+            "title": "Web Testing",
+            "isFavorite": false,
+            "created": "2016-06-03T07:34:55.000Z",
+            "updated": "2016-06-03T08:33:51.780Z",
+            }
+            ],
  "org": {
      "_id": "projectOrg3",
      "name": "Microsoft",

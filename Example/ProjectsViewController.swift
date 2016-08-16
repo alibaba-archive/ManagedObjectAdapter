@@ -21,8 +21,20 @@ class ProjectsViewController: UITableViewController {
 
         let project = projects.first
         let moProject = project?.toManagedObject(CoreDataManager.context) as? _Project
+        do {
+            try CoreDataManager.context.save()
+        } catch _ {
+
+        }
         print("\n********** Transferred ManagedObject **********")
         print(moProject)
+
+        let projectModel = Project.modelFromManagedObject(moProject!)
+        print("\n********** Transferred Model **********")
+        print(projectModel)
+        if let firstEvent = projectModel?.events?.first {
+            print(firstEvent)
+        }
     }
 
     // MARK: - Life cycle

@@ -18,7 +18,7 @@ class Project: ModelObject, ManagedObjectSerializing {
     var unreadCount = 0
     var org: Organization?
     var organization: Organization?
-    var events: [Event]?
+    var events: Set<Event>?
 
     override func mapping(map: Map) {
         super.mapping(map)
