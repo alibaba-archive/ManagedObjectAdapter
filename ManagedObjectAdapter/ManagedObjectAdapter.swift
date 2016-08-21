@@ -27,7 +27,7 @@ public extension ManagedObjectSerializing {
         let propertyKeys = self.propertyKeys
         let managedObjectKeys = generateManagedObjectKeysByPropertyKey()
 
-        for (_, propertyKey) in managedObjectKeys {
+        for (propertyKey, _) in managedObjectKeys {
             if propertyKeys.contains(propertyKey) {
                 continue
             }
@@ -71,9 +71,9 @@ public extension ManagedObjectSerializing {
             case is NSAttributeDescription:
                 if let valueTransformer = valueTransformers[propertyKey] {
                     let transformedValue = valueTransformer.reverseTransformedValue(value)
-                    model.setValue(transformedValue, forKey: managedObjectKey)
+                    model.setValue(transformedValue, forKey: propertyKey)
                 } else {
-                    model.setValue(value, forKey: managedObjectKey)
+                    model.setValue(value, forKey: propertyKey)
                 }
             case is NSRelationshipDescription:
                 guard let nestedClass = relationshipModelClassesByPropertyKey()[propertyKey] else {
@@ -169,27 +169,28 @@ public extension ManagedObjectSerializing {
                     managedObject?.setValue(value, forKey: managedObjectKey)
                 }
             case is NSRelationshipDescription:
+                guard let value = value else {
+                    break
+                }
                 let relationshipDescription = propertyDescription as! NSRelationshipDescription
 
                 if relationshipDescription.toMany {
-                    if let valueEnumerator = value?.objectEnumerator() {
-                        let relationshipCollection = relationshipDescription.ordered ? NSMutableOrderedSet() : NSMutableSet()
+                    let relationshipCollection = relationshipDescription.ordered ? NSMutableOrderedSet() : NSMutableSet()
 
-                        for nestedValue in valueEnumerator.allObjects {
-                            if let nestedObject = nestedValue as? ManagedObjectSerializing, nestedManagedObject = nestedObject.toManagedObject(context) {
-                                switch relationshipCollection {
-                                case is NSMutableOrderedSet:
-                                    (relationshipCollection as! NSMutableOrderedSet).addObject(nestedManagedObject)
-                                case is NSMutableSet:
-                                    (relationshipCollection as! NSMutableSet).addObject(nestedManagedObject)
-                                default:
-                                    break
-                                }
+                    for nestedValue in value.objectEnumerator().allObjects {
+                        if let nestedObject = nestedValue as? ManagedObjectSerializing, nestedManagedObject = nestedObject.toManagedObject(context) {
+                            switch relationshipCollection {
+                            case is NSMutableOrderedSet:
+                                (relationshipCollection as! NSMutableOrderedSet).addObject(nestedManagedObject)
+                            case is NSMutableSet:
+                                (relationshipCollection as! NSMutableSet).addObject(nestedManagedObject)
+                            default:
+                                break
                             }
                         }
-
-                        managedObject?.setValue(relationshipCollection, forKey: managedObjectKey)
                     }
+
+                    managedObject?.setValue(relationshipCollection, forKey: managedObjectKey)
                 } else {
                     if let nestedObject = value as? ManagedObjectSerializing, nestedManagedObject = nestedObject.toManagedObject(context) {
                         managedObject?.setValue(nestedManagedObject, forKey: managedObjectKey)
@@ -222,8 +223,8 @@ internal extension ManagedObjectSerializing {
             managedObjectKeys.updateValue(property, forKey: property)
         }
 
-        for (managedObjectKey, propertyKey) in managedObjectKeysByPropertyKey() {
-            managedObjectKeys.updateValue(propertyKey, forKey: managedObjectKey)
+        for (propertyKey, managedObjectKey) in managedObjectKeysByPropertyKey() {
+            managedObjectKeys.updateValue(managedObjectKey, forKey: propertyKey)
         }
 
         return managedObjectKeys

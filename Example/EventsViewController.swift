@@ -24,6 +24,10 @@ class EventsViewController: UITableViewController {
         let moEvent = event?.toManagedObject(CoreDataManager.context) as? _Event
         print("\n********** Transferred ManagedObject **********")
         print(moEvent)
+
+        let eventModel = Event.modelFromManagedObject(moEvent!)
+        print("\n********** Transferred Model **********")
+        print(eventModel)
     }
 
     // MARK: - Helper
