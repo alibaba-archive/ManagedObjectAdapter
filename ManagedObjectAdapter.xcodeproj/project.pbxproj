@@ -10,7 +10,19 @@
 		D304AAA31D5B0A7400013742 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D304AAA21D5B0A7400013742 /* Constants.swift */; };
 		D3283CC31D4881D900E1B445 /* ManagedObjectAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */; };
 		D3283CC91D48876C00E1B445 /* ManagedObjectSerializing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */; };
+		D3D39DF11D6AA90F00AECD76 /* ManagedObjectAdapterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D39DF01D6AA90F00AECD76 /* ManagedObjectAdapterTests.swift */; };
+		D3D39DF31D6AA90F00AECD76 /* ManagedObjectAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3283C961D4880C500E1B445 /* ManagedObjectAdapter.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D3D39DF41D6AA90F00AECD76 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D3283C8D1D4880C500E1B445 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D3283C951D4880C500E1B445;
+			remoteInfo = ManagedObjectAdapter;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		D304AAA21D5B0A7400013742 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -18,6 +30,9 @@
 		D3283CC01D4881BB00E1B445 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectAdapter.swift; sourceTree = "<group>"; };
 		D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectSerializing.swift; sourceTree = "<group>"; };
+		D3D39DEE1D6AA90F00AECD76 /* ManagedObjectAdapterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ManagedObjectAdapterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3D39DF01D6AA90F00AECD76 /* ManagedObjectAdapterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectAdapterTests.swift; sourceTree = "<group>"; };
+		D3D39DF21D6AA90F00AECD76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +43,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3D39DEB1D6AA90F00AECD76 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D39DF31D6AA90F00AECD76 /* ManagedObjectAdapter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -35,7 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				D3283C981D4880C500E1B445 /* ManagedObjectAdapter */,
-				D3283CBF1D4881A200E1B445 /* Supporting Files */,
+				D3D39DEF1D6AA90F00AECD76 /* ManagedObjectAdapterTests */,
 				D3283C971D4880C500E1B445 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -44,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				D3283C961D4880C500E1B445 /* ManagedObjectAdapter.framework */,
+				D3D39DEE1D6AA90F00AECD76 /* ManagedObjectAdapterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 				D304AAA21D5B0A7400013742 /* Constants.swift */,
 				D3283CC81D48876C00E1B445 /* ManagedObjectSerializing.swift */,
 				D3283CC21D4881D900E1B445 /* ManagedObjectAdapter.swift */,
+				D3283CBF1D4881A200E1B445 /* Supporting Files */,
 			);
 			path = ManagedObjectAdapter;
 			sourceTree = "<group>";
@@ -63,8 +88,16 @@
 			children = (
 				D3283CC01D4881BB00E1B445 /* Info.plist */,
 			);
-			name = "Supporting Files";
-			path = "ManagedObjectAdapter/Supporting Files";
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3D39DEF1D6AA90F00AECD76 /* ManagedObjectAdapterTests */ = {
+			isa = PBXGroup;
+			children = (
+				D3D39DF01D6AA90F00AECD76 /* ManagedObjectAdapterTests.swift */,
+				D3D39DF21D6AA90F00AECD76 /* Info.plist */,
+			);
+			path = ManagedObjectAdapterTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,16 +131,38 @@
 			productReference = D3283C961D4880C500E1B445 /* ManagedObjectAdapter.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		D3D39DED1D6AA90F00AECD76 /* ManagedObjectAdapterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3D39DF81D6AA90F00AECD76 /* Build configuration list for PBXNativeTarget "ManagedObjectAdapterTests" */;
+			buildPhases = (
+				D3D39DEA1D6AA90F00AECD76 /* Sources */,
+				D3D39DEB1D6AA90F00AECD76 /* Frameworks */,
+				D3D39DEC1D6AA90F00AECD76 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D3D39DF51D6AA90F00AECD76 /* PBXTargetDependency */,
+			);
+			name = ManagedObjectAdapterTests;
+			productName = ManagedObjectAdapterTests;
+			productReference = D3D39DEE1D6AA90F00AECD76 /* ManagedObjectAdapterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D3283C8D1D4880C500E1B445 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = Teambition;
 				TargetAttributes = {
 					D3283C951D4880C500E1B445 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					D3D39DED1D6AA90F00AECD76 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
 				};
@@ -125,12 +180,20 @@
 			projectRoot = "";
 			targets = (
 				D3283C951D4880C500E1B445 /* ManagedObjectAdapter */,
+				D3D39DED1D6AA90F00AECD76 /* ManagedObjectAdapterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D3283C941D4880C500E1B445 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3D39DEC1D6AA90F00AECD76 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -150,7 +213,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D3D39DEA1D6AA90F00AECD76 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3D39DF11D6AA90F00AECD76 /* ManagedObjectAdapterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D3D39DF51D6AA90F00AECD76 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D3283C951D4880C500E1B445 /* ManagedObjectAdapter */;
+			targetProxy = D3D39DF41D6AA90F00AECD76 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D3283C9C1D4880C500E1B445 /* Debug */ = {
@@ -279,6 +358,28 @@
 			};
 			name = Release;
 		};
+		D3D39DF61D6AA90F00AECD76 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ManagedObjectAdapterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D3D39DF71D6AA90F00AECD76 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ManagedObjectAdapterTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -299,6 +400,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		D3D39DF81D6AA90F00AECD76 /* Build configuration list for PBXNativeTarget "ManagedObjectAdapterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3D39DF61D6AA90F00AECD76 /* Debug */,
+				D3D39DF71D6AA90F00AECD76 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

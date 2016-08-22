@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>ManagedObjectAdapterTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>D3283C951D4880C500E1B445</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3D39DED1D6AA90F00AECD76</key>
 		<dict>
 			<key>primary</key>
 			<true/>
