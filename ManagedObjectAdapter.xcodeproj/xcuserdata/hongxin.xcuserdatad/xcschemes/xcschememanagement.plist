@@ -4,15 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>ManagedObjectAdapter.xcscheme_^#shared#^_</key>
+		<key>ManagedObjectAdapter iOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>ManagedObjectAdapterTests.xcscheme</key>
+		<key>ManagedObjectAdapter watchOS.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>ManagedObjectAdapterTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>D3D39DED1D6AA90F00AECD76</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D3D39DFD1D6AC3B600AECD76</key>
 		<dict>
 			<key>primary</key>
 			<true/>

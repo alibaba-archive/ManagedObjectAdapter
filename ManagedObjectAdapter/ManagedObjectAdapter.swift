@@ -15,11 +15,15 @@ internal func performInContext(context: NSManagedObjectContext?, block: () -> Vo
         return
     }
 
+    #if os(watchOS)
+        context.performBlockAndWait(block)
+    #else
     if context.concurrencyType == .ConfinementConcurrencyType {
         block()
     } else {
         context.performBlockAndWait(block)
     }
+    #endif
 }
 
 public extension ManagedObjectSerializing {
