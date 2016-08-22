@@ -45,11 +45,13 @@ class EventsViewController: UITableViewController {
         guard let jsonData = NSData(contentsOfFile: path) else {
             return
         }
-        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [AnyObject] else {
+        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [[String: AnyObject]] else {
             return
         }
         
-        guard let events = Mapper<Event>().mapArray(json) else {
+        guard let events = json?.flatMap({ (object) -> Event? in
+            return Event(object)
+        }) else {
             return
         }
         self.events = events

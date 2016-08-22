@@ -54,11 +54,13 @@ class ExampleViewController: UITableViewController {
         guard let jsonData = NSData(contentsOfFile: path) else {
             return
         }
-        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [AnyObject] else {
+        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [[String: AnyObject]] else {
             return
         }
 
-        guard let organizations = Mapper<Organization>().mapArray(json) else {
+        guard let organizations = json?.flatMap({ (object) -> Organization? in
+            return Organization(object)
+        }) else {
             return
         }
         self.organizations = organizations

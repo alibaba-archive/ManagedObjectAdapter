@@ -53,11 +53,13 @@ class ProjectsViewController: UITableViewController {
         guard let jsonData = NSData(contentsOfFile: path) else {
             return
         }
-        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [AnyObject] else {
+        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [[String: AnyObject]] else {
             return
         }
-        
-        guard let projects = Mapper<Project>().mapArray(json) else {
+
+        guard let projects = json?.flatMap({ (object) -> Project? in
+            return Project(object)
+        }) else {
             return
         }
         self.projects = projects

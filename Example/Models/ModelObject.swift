@@ -18,6 +18,14 @@ class ModelObject: NSObject, Mappable {
 
     required init?(_ map: Map) { }
 
+    convenience init?(_ JSON: AnyObject) {
+        self.init()
+        if let JSON = JSON as? [String: AnyObject] {
+            let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
+            mapping(map)
+        }
+    }
+
     func mapping(map: Map) {
         id <- map["_id"]
         createdAt <- (map["created"], DateTransform())
