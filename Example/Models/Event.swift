@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 import ManagedObjectAdapter
 
-class Event: ModelObject, ManagedObjectSerializing {
+class Event: ModelObject {
     var projectID: String?
     var title: String?
     var isFavorite: Bool = false
@@ -30,15 +30,11 @@ class Event: ModelObject, ManagedObjectSerializing {
         project <- map["project"]
     }
 
-    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+    override class func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
         return ["recurrence": RecurrenceTransformer()]
     }
 
-    static func propertyKeysForManagedObjectUniquing() -> Set<String> {
-        return ["id"]
-    }
-
-    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
+    override class func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
         return ["project": Project.self]
     }
 }

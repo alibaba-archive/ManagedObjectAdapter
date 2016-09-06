@@ -8,8 +8,9 @@
 
 import Foundation
 import ObjectMapper
+import ManagedObjectAdapter
 
-class ModelObject: NSObject, Mappable {
+class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
     var id: String?
     var createdAt: NSDate?
     var updatedAt: NSDate?
@@ -30,6 +31,22 @@ class ModelObject: NSObject, Mappable {
         id <- map["_id"]
         createdAt <- (map["created"], DateTransform())
         updatedAt <- (map["updated"], DateTransform())
+    }
+
+    class func managedObjectKeysByPropertyKey() -> [String: String] {
+        return [:]
+    }
+
+    class func valueTransformersByPropertyKey() -> [String: NSValueTransformer] {
+        return [:]
+    }
+
+    class func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
+        return [:]
+    }
+
+    class func propertyKeysForManagedObjectUniquing() -> Set<String> {
+        return ["id"]
     }
 }
 

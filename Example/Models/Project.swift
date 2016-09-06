@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 import ManagedObjectAdapter
 
-class Project: ModelObject, ManagedObjectSerializing {
+class Project: ModelObject {
     var name: String?
     var logo: NSURL?
     var isPublic: Bool = false
@@ -32,15 +32,11 @@ class Project: ModelObject, ManagedObjectSerializing {
         events <- map["events"]
     }
 
-    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+    override class func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
         return ["org": OrignizationTransformer()]
     }
 
-    static func propertyKeysForManagedObjectUniquing() -> Set<String> {
-        return ["id"]
-    }
-
-    static func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
+    override class func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
         return ["organization": Organization.self, "events": Event.self]
     }
 }
