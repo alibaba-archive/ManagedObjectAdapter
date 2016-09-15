@@ -9,25 +9,25 @@
 import Foundation
 import CoreData
 
-internal func performInContext(context: NSManagedObjectContext?, block: () -> Void) {
+internal func perform(in context: NSManagedObjectContext?, block: @escaping () -> ()) {
     guard let context = context else {
         block()
         return
     }
 
     #if os(watchOS)
-        context.performBlockAndWait(block)
+        context.performAndWait(block)
     #else
-    if context.concurrencyType == .ConfinementConcurrencyType {
+    if context.concurrencyType == .confinementConcurrencyType {
         block()
     } else {
-        context.performBlockAndWait(block)
+        context.performAndWait(block)
     }
     #endif
 }
 
 public extension ManagedObjectSerializing {
-    public static func modelFromManagedObject(managedObject: NSManagedObject) -> Self? {
+    public static func model(from managedObject: NSManagedObject) -> Self? {
         let propertyKeys = self.propertyKeys
         let managedObjectKeys = generateManagedObjectKeysByPropertyKey()
 
@@ -38,12 +38,12 @@ public extension ManagedObjectSerializing {
             return nil
         }
 
-        let processedModels = [NSManagedObject: AnyObject]()
+        let processedModels = [NSManagedObject: Any]()
 
-        return modelFromManagedObject(managedObject, processedModels: processedModels)
+        return model(from: managedObject, processedModels: processedModels)
     }
 
-    private static func modelFromManagedObject(managedObject: NSManagedObject, processedModels: [NSManagedObject: AnyObject]) -> Self? {
+    fileprivate static func model(from managedObject: NSManagedObject, processedModels: [NSManagedObject: Any]) -> Self? {
         let propertyKeys = self.propertyKeys
         let managedObjectKeys = generateManagedObjectKeysByPropertyKey()
         let valueTransformers = valueTransformersByPropertyKey()
@@ -66,9 +66,9 @@ public extension ManagedObjectSerializing {
                 continue
             }
 
-            var value: AnyObject?
-            performInContext(managedObject.managedObjectContext, block: {
-                value = managedObject.valueForKey(managedObjectKey)
+            var value: Any?
+            perform(in: managedObject.managedObjectContext, block: {
+                value = managedObject.value(forKey: managedObjectKey)
             })
 
             switch propertyDescription {
@@ -85,21 +85,20 @@ public extension ManagedObjectSerializing {
                 }
                 let relationshipDescription = propertyDescription as! NSRelationshipDescription
 
-                if relationshipDescription.toMany {
-                    var models: [AnyObject]?
-                    performInContext(managedObject.managedObjectContext, block: {
-                        let relationshipCollection = value
-                        if let valueEnumerator = relationshipCollection?.objectEnumerator() {
-                            models = valueEnumerator.allObjects.flatMap({ (object) -> AnyObject? in
-                                if let nestedManagedObject = object as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
-                                    return nestedClass.modelFromManagedObject(nestedManagedObject, processedModels: mutableProcessedModels)
+                if relationshipDescription.isToMany {
+                    var models: [Any]?
+                    perform(in: managedObject.managedObjectContext, block: {
+                        if let relationshipCollection = value {
+                            models = (relationshipCollection as AnyObject).objectEnumerator().allObjects.flatMap({ (object) -> Any? in
+                                if let nestedManagedObject = object as? NSManagedObject, let nestedClass = nestedClass as? ManagedObjectSerializing.Type {
+                                    return nestedClass.model(from: nestedManagedObject, processedModels: mutableProcessedModels)
                                 }
                                 return nil
                             })
                         }
                     })
 
-                    if !relationshipDescription.ordered {
+                    if !relationshipDescription.isOrdered {
                         let modelsSet: NSSet? = {
                             if let models = models {
                                 return NSSet(array: models)
@@ -111,8 +110,8 @@ public extension ManagedObjectSerializing {
                         model.setValue(models, forKey: propertyKey)
                     }
                 } else {
-                    if let nestedManagedObject = value as? NSManagedObject, nestedClass = nestedClass as? ManagedObjectSerializing.Type {
-                        let nestedObject = nestedClass.modelFromManagedObject(nestedManagedObject, processedModels: mutableProcessedModels)
+                    if let nestedManagedObject = value as? NSManagedObject, let nestedClass = nestedClass as? ManagedObjectSerializing.Type {
+                        let nestedObject = nestedClass.model(from: nestedManagedObject, processedModels: mutableProcessedModels)
                         model.setValue(nestedObject, forKey: propertyKey)
                     }
                 }
@@ -124,23 +123,23 @@ public extension ManagedObjectSerializing {
         return model
     }
 
-    public func toManagedObject(context: NSManagedObjectContext) -> NSManagedObject? {
-        let entityName = self.dynamicType.managedObjectEntityName()
-        let valueTransformers = self.dynamicType.valueTransformersByPropertyKey()
-        let managedObjectKeys = self.dynamicType.generateManagedObjectKeysByPropertyKey()
+    public func toManagedObject(in context: NSManagedObjectContext) -> NSManagedObject? {
+        let entityName = type(of: self).managedObjectEntityName()
+        let valueTransformers = type(of: self).valueTransformersByPropertyKey()
+        let managedObjectKeys = type(of: self).generateManagedObjectKeysByPropertyKey()
 
         var managedObject: NSManagedObject?
 
         if let uniquingPredicate = generateUniquingPredicate() {
-            performInContext(context, block: {
-                let fetchRequest = NSFetchRequest()
-                fetchRequest.entity = NSEntityDescription.entityForName(entityName, inManagedObjectContext: context)
+            perform(in: context, block: {
+                let fetchRequest = NSFetchRequest<NSManagedObject>()
+                fetchRequest.entity = NSEntityDescription.entity(forEntityName: entityName, in: context)
                 fetchRequest.predicate = uniquingPredicate
                 fetchRequest.returnsObjectsAsFaults = false
                 fetchRequest.fetchLimit = 1
 
-                let results = try? context.executeFetchRequest(fetchRequest)
-                if let object = results?.first as? NSManagedObject {
+                let results = try? context.fetch(fetchRequest)
+                if let object = results?.first {
                     managedObject = object
                 }
             })
@@ -149,7 +148,7 @@ public extension ManagedObjectSerializing {
         if let _ = managedObject {
 
         } else {
-            managedObject = NSEntityDescription.insertNewObjectForEntityForName(entityName, inManagedObjectContext: context)
+            managedObject = NSEntityDescription.insertNewObject(forEntityName: entityName, into: context)
         }
 
         let managedObjectPropertyDescriptions = managedObject!.entity.propertiesByName
@@ -162,7 +161,7 @@ public extension ManagedObjectSerializing {
                 continue
             }
 
-            let value = valueForKey(propertyKey)
+            let value = self.value(forKey: propertyKey)
 
             switch propertyDescription {
             case is NSAttributeDescription:
@@ -178,16 +177,16 @@ public extension ManagedObjectSerializing {
                 }
                 let relationshipDescription = propertyDescription as! NSRelationshipDescription
 
-                if relationshipDescription.toMany {
-                    let relationshipCollection = relationshipDescription.ordered ? NSMutableOrderedSet() : NSMutableSet()
+                if relationshipDescription.isToMany {
+                    let relationshipCollection = relationshipDescription.isOrdered ? NSMutableOrderedSet() : NSMutableSet()
 
-                    for nestedValue in value.objectEnumerator().allObjects {
-                        if let nestedObject = nestedValue as? ManagedObjectSerializing, nestedManagedObject = nestedObject.toManagedObject(context) {
+                    for nestedValue in (value as AnyObject).objectEnumerator().allObjects {
+                        if let nestedObject = nestedValue as? ManagedObjectSerializing, let nestedManagedObject = nestedObject.toManagedObject(in: context) {
                             switch relationshipCollection {
                             case is NSMutableOrderedSet:
-                                (relationshipCollection as! NSMutableOrderedSet).addObject(nestedManagedObject)
+                                (relationshipCollection as! NSMutableOrderedSet).add(nestedManagedObject)
                             case is NSMutableSet:
-                                (relationshipCollection as! NSMutableSet).addObject(nestedManagedObject)
+                                (relationshipCollection as! NSMutableSet).add(nestedManagedObject)
                             default:
                                 break
                             }
@@ -196,7 +195,7 @@ public extension ManagedObjectSerializing {
 
                     managedObject?.setValue(relationshipCollection, forKey: managedObjectKey)
                 } else {
-                    if let nestedObject = value as? ManagedObjectSerializing, nestedManagedObject = nestedObject.toManagedObject(context) {
+                    if let nestedObject = value as? ManagedObjectSerializing, let nestedManagedObject = nestedObject.toManagedObject(in: context) {
                         managedObject?.setValue(nestedManagedObject, forKey: managedObjectKey)
                     }
                 }
@@ -209,8 +208,8 @@ public extension ManagedObjectSerializing {
             do {
                 try object.validateForInsert()
             } catch {
-                performInContext(context, block: {
-                    context.deleteObject(object)
+                perform(in: context, block: {
+                    context.delete(object)
                     managedObject = nil
                 })
             }
@@ -221,7 +220,7 @@ public extension ManagedObjectSerializing {
 }
 
 internal extension ManagedObjectSerializing {
-    private static func generateManagedObjectKeysByPropertyKey() -> [String: String] {
+    fileprivate static func generateManagedObjectKeysByPropertyKey() -> [String: String] {
         var managedObjectKeys = [String: String]()
         for property in propertyKeys {
             managedObjectKeys.updateValue(property, forKey: property)
@@ -234,10 +233,10 @@ internal extension ManagedObjectSerializing {
         return managedObjectKeys
     }
 
-    private func generateUniquingPredicate() -> NSPredicate? {
-        let uniquingPropertyKeys = self.dynamicType.propertyKeysForManagedObjectUniquing()
-        let valueTransformers = self.dynamicType.valueTransformersByPropertyKey()
-        let managedObjectKeys = self.dynamicType.generateManagedObjectKeysByPropertyKey()
+    fileprivate func generateUniquingPredicate() -> NSPredicate? {
+        let uniquingPropertyKeys = type(of: self).propertyKeysForManagedObjectUniquing()
+        let valueTransformers = type(of: self).valueTransformersByPropertyKey()
+        let managedObjectKeys = type(of: self).generateManagedObjectKeysByPropertyKey()
 
         guard uniquingPropertyKeys.count > 0 else {
             return nil
@@ -249,7 +248,7 @@ internal extension ManagedObjectSerializing {
                 continue
             }
 
-            var value = valueForKey(uniquingPropertyKey)
+            var value = self.value(forKey: uniquingPropertyKey)
             if let transformer = valueTransformers[uniquingPropertyKey] {
                 value = transformer.transformedValue(value)
             }

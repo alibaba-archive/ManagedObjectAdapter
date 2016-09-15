@@ -14,9 +14,8 @@
 		D3283CC51D4883AF00E1B445 /* ManagedObjectAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; };
 		D3283CC61D4883AF00E1B445 /* ManagedObjectAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D35FFC381D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D35FFC361D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld */; };
-		D37EE7341D5B433200AA85B5 /* OrignizationTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EE7331D5B433200AA85B5 /* OrignizationTransformer.swift */; };
-		D37EE73A1D5B47C200AA85B5 /* RecurrenceTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EE7391D5B47C200AA85B5 /* RecurrenceTransformer.swift */; };
-		D38016DA1D5B0EE7004DB625 /* ProjectsArrayTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38016D91D5B0EE7004DB625 /* ProjectsArrayTransformer.swift */; };
+		D37EE7341D5B433200AA85B5 /* ArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EE7331D5B433200AA85B5 /* ArrayValueTransformer.swift */; };
+		D38016DA1D5B0EE7004DB625 /* ObjectValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38016D91D5B0EE7004DB625 /* ObjectValueTransformer.swift */; };
 		D3828F3C1D4A0E7E00F70E02 /* events.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F391D4A0E7E00F70E02 /* events.json */; };
 		D3828F3D1D4A0E7E00F70E02 /* organizations.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F3A1D4A0E7E00F70E02 /* organizations.json */; };
 		D3828F3E1D4A0E7E00F70E02 /* projects.json in Resources */ = {isa = PBXBuildFile; fileRef = D3828F3B1D4A0E7E00F70E02 /* projects.json */; };
@@ -56,9 +55,8 @@
 		D3283CB91D48812300E1B445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = ManagedObjectAdapter.framework; path = "/Users/hongxin/Library/Developer/Xcode/DerivedData/ManagedObjectAdapter-chxqragpqvwakbcjbjsfbvtqliio/Build/Products/Debug-iphoneos/ManagedObjectAdapter.framework"; sourceTree = "<absolute>"; };
 		D35FFC371D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ManagedObjectAdapter.xcdatamodel; sourceTree = "<group>"; };
-		D37EE7331D5B433200AA85B5 /* OrignizationTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrignizationTransformer.swift; sourceTree = "<group>"; };
-		D37EE7391D5B47C200AA85B5 /* RecurrenceTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecurrenceTransformer.swift; sourceTree = "<group>"; };
-		D38016D91D5B0EE7004DB625 /* ProjectsArrayTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsArrayTransformer.swift; sourceTree = "<group>"; };
+		D37EE7331D5B433200AA85B5 /* ArrayValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayValueTransformer.swift; sourceTree = "<group>"; };
+		D38016D91D5B0EE7004DB625 /* ObjectValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectValueTransformer.swift; sourceTree = "<group>"; };
 		D3828F391D4A0E7E00F70E02 /* events.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = events.json; sourceTree = "<group>"; };
 		D3828F3A1D4A0E7E00F70E02 /* organizations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = organizations.json; sourceTree = "<group>"; };
 		D3828F3B1D4A0E7E00F70E02 /* projects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = projects.json; sourceTree = "<group>"; };
@@ -128,9 +126,8 @@
 		D38016D61D5B0E47004DB625 /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				D38016D91D5B0EE7004DB625 /* ProjectsArrayTransformer.swift */,
-				D37EE7331D5B433200AA85B5 /* OrignizationTransformer.swift */,
-				D37EE7391D5B47C200AA85B5 /* RecurrenceTransformer.swift */,
+				D38016D91D5B0EE7004DB625 /* ObjectValueTransformer.swift */,
+				D37EE7331D5B433200AA85B5 /* ArrayValueTransformer.swift */,
 			);
 			path = Transformers;
 			sourceTree = "<group>";
@@ -188,11 +185,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Teambition;
 				TargetAttributes = {
 					D3283CA91D48812300E1B445 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -253,7 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3828F401D4A0ECF00F70E02 /* Event.swift in Sources */,
-				D38016DA1D5B0EE7004DB625 /* ProjectsArrayTransformer.swift in Sources */,
+				D38016DA1D5B0EE7004DB625 /* ObjectValueTransformer.swift in Sources */,
 				D3828F4D1D4A192000F70E02 /* Recurrence.swift in Sources */,
 				D3828F531D4A321E00F70E02 /* ManagedObject.swift in Sources */,
 				D3828F461D4A102400F70E02 /* ModelObject.swift in Sources */,
@@ -264,8 +262,7 @@
 				D3828F421D4A0EE300F70E02 /* Organization.swift in Sources */,
 				D35FFC381D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld in Sources */,
 				D3828F441D4A0EFA00F70E02 /* Project.swift in Sources */,
-				D37EE73A1D5B47C200AA85B5 /* RecurrenceTransformer.swift in Sources */,
-				D37EE7341D5B433200AA85B5 /* OrignizationTransformer.swift in Sources */,
+				D37EE7341D5B433200AA85B5 /* ArrayValueTransformer.swift in Sources */,
 				D3828F511D4A280E00F70E02 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,8 +295,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -344,8 +343,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -364,6 +365,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -381,6 +383,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapter.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -396,6 +399,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Teambition.ManagedObjectAdapter.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

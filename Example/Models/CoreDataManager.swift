@@ -10,51 +10,51 @@ import Foundation
 import CoreData
 
 extension NSManagedObjectContext {
-    func managedObject(ID: String) -> NSManagedObject? {
-        guard let URL = NSURL(string: ID), managedObjectID = CoreDataManager.persistentStoreCoordinator?.managedObjectIDForURIRepresentation(URL) else {
+    func managedObject(_ ID: String) -> NSManagedObject? {
+        guard let url = URL(string: ID), let managedObjectID = CoreDataManager.persistentStoreCoordinator?.managedObjectID(forURIRepresentation: url) else {
             return nil
         }
-        return try? existingObjectWithID(managedObjectID)
+        return try? existingObject(with: managedObjectID)
     }
 }
 
 struct CoreDataManager {
     static let context: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         context.persistentStoreCoordinator = persistentStoreCoordinator
         return context
     }()
 
     static let coreDataStorePath: String? = {
-        guard let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first else {
+        guard let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first else {
             return nil
         }
 
-        let coreDataStorePath = (documentsPath as NSString).stringByAppendingPathComponent("com.teambition")
-        if !NSFileManager.defaultManager().fileExistsAtPath(coreDataStorePath) {
+        let coreDataStorePath = (documentsPath as NSString).appendingPathComponent("com.teambition")
+        if !FileManager.default.fileExists(atPath: coreDataStorePath) {
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(coreDataStorePath, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(atPath: coreDataStorePath, withIntermediateDirectories: true, attributes: nil)
             } catch {
                 return nil
             }
         }
 
-        let path = ((coreDataStorePath as NSString).stringByAppendingPathComponent("ManagedObjectAdapterExample") as NSString).stringByAppendingPathExtension("sqlite")
+        let path = ((coreDataStorePath as NSString).appendingPathComponent("ManagedObjectAdapterExample") as NSString).appendingPathExtension("sqlite")
         return path
     }()
 
     static let persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
-        let bundle = NSBundle(forClass: ManagedObject.self)
-        guard let managedObjectModel = NSManagedObjectModel.mergedModelFromBundles([bundle]) else {
+        let bundle = Bundle(for: ManagedObject.self)
+        guard let managedObjectModel = NSManagedObjectModel.mergedModel(from: [bundle]) else {
             return nil
         }
         guard let coreDataStorePath = coreDataStorePath else {
             return nil
         }
         let persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-        let coreDataStoreURL = NSURL(fileURLWithPath: coreDataStorePath)
+        let coreDataStoreURL = URL(fileURLWithPath: coreDataStorePath)
         do {
-            try persistentStoreCoordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: coreDataStoreURL, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
+            try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: coreDataStoreURL, options: [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true])
         } catch {
             
         }

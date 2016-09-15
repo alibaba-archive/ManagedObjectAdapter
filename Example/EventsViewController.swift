@@ -21,31 +21,31 @@ class EventsViewController: UITableViewController {
         loadData()
 
         let event = events.first
-        let moEvent = event?.toManagedObject(CoreDataManager.context) as? _Event
+        let moEvent = event?.toManagedObject(in: CoreDataManager.context) as? _Event
         print("\n********** Transferred ManagedObject **********")
         print(moEvent)
 
-        let eventModel = Event.modelFromManagedObject(moEvent!)
+        let eventModel = Event.model(from: moEvent!)
         print("\n********** Transferred Model **********")
         print(eventModel)
     }
 
     // MARK: - Helper
-    private func setupUI() {
+    fileprivate func setupUI() {
         navigationItem.title = "Events"
         tableView.tableFooterView = UIView()
     }
 
-    private func loadData() {
-        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("events", ofType: "json") ?? NSBundle.mainBundle().pathForResource("events", ofType: "json") else {
+    fileprivate func loadData() {
+        guard let path = Bundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.path(forResource: "events", ofType: "json") ?? Bundle.main.path(forResource: "events", ofType: "json") else {
             return
         }
         print(path)
         
-        guard let jsonData = NSData(contentsOfFile: path) else {
+        guard let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             return
         }
-        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [[String: AnyObject]] else {
+        guard let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: Any]] else {
             return
         }
         
@@ -59,18 +59,18 @@ class EventsViewController: UITableViewController {
     }
 
     // MARK: - Table view data source and delegate
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("EventCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "EventCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "EventCell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "EventCell")
         }
         let event = events[indexPath.row]
         cell?.textLabel?.text = event.title
@@ -78,7 +78,7 @@ class EventsViewController: UITableViewController {
         return cell!
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

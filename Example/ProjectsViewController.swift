@@ -20,7 +20,7 @@ class ProjectsViewController: UITableViewController {
         loadData()
 
         let project = projects.first
-        let moProject = project?.toManagedObject(CoreDataManager.context) as? _Project
+        let moProject = project?.toManagedObject(in: CoreDataManager.context) as? _Project
         do {
             try CoreDataManager.context.save()
         } catch _ {
@@ -29,7 +29,7 @@ class ProjectsViewController: UITableViewController {
         print("\n********** Transferred ManagedObject **********")
         print(moProject)
 
-        let projectModel = Project.modelFromManagedObject(moProject!)
+        let projectModel = Project.model(from: moProject!)
         print("\n********** Transferred Model **********")
         print(projectModel)
         if let firstEvent = projectModel?.events?.first {
@@ -38,22 +38,22 @@ class ProjectsViewController: UITableViewController {
     }
 
     // MARK: - Life cycle
-    private func setupUI() {
+    fileprivate func setupUI() {
         navigationItem.title = "Projects"
         tableView.tableFooterView = UIView()
     }
 
     // MARK: - Helper
-    private func loadData() {
-        guard let path = NSBundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.pathForResource("projects", ofType: "json") ?? NSBundle.mainBundle().pathForResource("projects", ofType: "json") else {
+    fileprivate func loadData() {
+        guard let path = Bundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.path(forResource: "projects", ofType: "json") ?? Bundle.main.path(forResource: "projects", ofType: "json") else {
             return
         }
         print(path)
         
-        guard let jsonData = NSData(contentsOfFile: path) else {
+        guard let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             return
         }
-        guard let json = try? NSJSONSerialization.JSONObjectWithData(jsonData, options: []) as? [[String: AnyObject]] else {
+        guard let json = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [[String: Any]] else {
             return
         }
 
@@ -67,18 +67,18 @@ class ProjectsViewController: UITableViewController {
     }
 
     // MARK: - Table view data source and delegate
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return projects.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("ProjectCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "ProjectCell")
         if cell == nil {
-            cell = UITableViewCell(style: .Value1, reuseIdentifier: "ProjectCell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "ProjectCell")
         }
         let project = projects[indexPath.row]
         cell?.textLabel?.text = project.name
@@ -86,8 +86,8 @@ class ProjectsViewController: UITableViewController {
         return cell!
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         let eventsViewController = EventsViewController()
         navigationController?.pushViewController(eventsViewController, animated: true)
     }

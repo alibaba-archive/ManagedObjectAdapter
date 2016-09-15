@@ -15,12 +15,12 @@ class Event: ModelObject {
     var title: String?
     var isFavorite: Bool = false
     var likesCount = 0
-    var alert: NSData?
+    var alert: Data?
     var recurrence: Recurrence?
     var project: Project?
 
     override func mapping(map: Map) {
-        super.mapping(map)
+        super.mapping(map: map)
         projectID <- map["_projectId"]
         title <- map["title"]
         isFavorite <- map["isFavorite"]
@@ -30,8 +30,8 @@ class Event: ModelObject {
         project <- map["project"]
     }
 
-    override class func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
-        return ["recurrence": RecurrenceTransformer()]
+    override class func valueTransformersByPropertyKey() -> [String : ValueTransformer] {
+        return ["recurrence": ObjectValueTransformer<Recurrence>()]
     }
 
     override class func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
@@ -41,14 +41,14 @@ class Event: ModelObject {
 
 @objc(_Event)
 class _Event: ManagedObject {
-    @NSManaged var alert: NSData?
-    @NSManaged var createdAt: NSDate?
+    @NSManaged var alert: Data?
+    @NSManaged var createdAt: Date?
     @NSManaged var id: String?
     @NSManaged var isFavorite: NSNumber?
     @NSManaged var likesCount: NSNumber?
     @NSManaged var projectID: String?
     @NSManaged var recurrence: NSObject?
     @NSManaged var title: String?
-    @NSManaged var updatedAt: NSDate?
+    @NSManaged var updatedAt: Date?
     @NSManaged var project: _Project?
 }
