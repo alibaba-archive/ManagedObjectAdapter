@@ -15,14 +15,14 @@ github "teambition/ManagedObjectAdapter"
 Models that you want to use ManagedObjectAdapter must conform to ```ManagedObjectSerializing``` protocol.
 
 ```swift
-protocol ManagedObjectSerializing: AnyObject {
+protocol ManagedObjectSerializing {
     init()
-    func valueForKey(key: String) -> AnyObject?
-    func setValue(value: AnyObject?, forKey key: String)
+    func value(forKey key: String) -> Any?
+    func setValue(_ value: Any?, forKey key: String)
 
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
-    static func valueTransformersByPropertyKey() -> [String: NSValueTransformer]
+    static func valueTransformersByPropertyKey() -> [String: ValueTransformer]
     static func relationshipModelClassesByPropertyKey() -> [String: AnyClass]
     static func propertyKeysForManagedObjectUniquing() -> Set<String>
 }
@@ -35,7 +35,7 @@ class TestModel: NSObject, ManagedObjectSerializing {
     var id: String?
 
     // Property name of this property in xcdatamodeld is "downloadUrl"
-    var downloadURL: NSURL?
+    var downloadURL: URL?
 
     // Type of this property in xcdatamodeld is Transformable
     var transformableModel: TransformableModel?
@@ -49,7 +49,7 @@ class TestModel: NSObject, ManagedObjectSerializing {
         return ["downloadURL": "downloadUrl"]
     }
 
-    static func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
+    static func valueTransformersByPropertyKey() -> [String : ValueTransformer] {
         return ["transformableModel": TransformableModelTransformer()]
     }
 
@@ -74,20 +74,20 @@ class RelationshipModel: NSObject, ManagedObjectSerializing {
     required override init() { }
 }
 
-class TransformableModelTransformer: NSValueTransformer {
-    override func transformedValue(value: AnyObject?) -> AnyObject? {
-        // Model to NSData
+class TransformableModelTransformer: ValueTransformer {
+    override func transformedValue(_ value: Any?) -> Any? {
+        // Model to Data
     }
 
-    override func reverseTransformedValue(value: AnyObject?) -> AnyObject? {
-        // NSData to Model
+    override func reverseTransformedValue(_ value: Any?) -> Any? {
+        // Data to Model
     }
 }
 
 let managedObjectContext = ...
 let originModel = ...
-let moTestModel = originModel.toManagedObject(managedObjectContext)
-let testModel = TestModel.modelFromManagedObject(moTestModel!)
+let moTestModel = originModel.toManagedObject(in: managedObjectContext)
+let testModel = TestModel.model(from: moTestModel!)
 ```
 
 ## Minimum Requirement
