@@ -12,7 +12,7 @@ import ManagedObjectAdapter
 
 class Project: ModelObject {
     var name: String?
-    var logo: NSURL?
+    var logo: URL?
     var isPublic: Bool = false
     var isStar: Bool = false
     var unreadCount = 0
@@ -21,7 +21,7 @@ class Project: ModelObject {
     var events: Set<Event>?
 
     override func mapping(map: Map) {
-        super.mapping(map)
+        super.mapping(map: map)
         name <- map["name"]
         logo <- (map["logo"], URLTransform())
         isStar <- map["isStar"]
@@ -32,8 +32,8 @@ class Project: ModelObject {
         events <- map["events"]
     }
 
-    override class func valueTransformersByPropertyKey() -> [String : NSValueTransformer] {
-        return ["org": OrignizationTransformer()]
+    override class func valueTransformersByPropertyKey() -> [String : ValueTransformer] {
+        return ["org": ObjectValueTransformer<Organization>()]
     }
 
     override class func relationshipModelClassesByPropertyKey() -> [String: AnyClass] {
@@ -43,7 +43,7 @@ class Project: ModelObject {
 
 @objc(_Project)
 class _Project: ManagedObject {
-    @NSManaged var createdAt: NSDate?
+    @NSManaged var createdAt: Date?
     @NSManaged var id: String?
     @NSManaged var isPublic: NSNumber?
     @NSManaged var isStar: NSNumber?
@@ -51,7 +51,7 @@ class _Project: ManagedObject {
     @NSManaged var name: String?
     @NSManaged var org: NSObject?
     @NSManaged var unreadCount: NSNumber?
-    @NSManaged var updatedAt: NSDate?
+    @NSManaged var updatedAt: Date?
     @NSManaged var events: NSSet?
     @NSManaged var organization: _Organization?
 }

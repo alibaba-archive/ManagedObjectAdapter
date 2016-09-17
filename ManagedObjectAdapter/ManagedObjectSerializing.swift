@@ -8,28 +8,28 @@
 
 import Foundation
 
-public protocol ManagedObjectSerializing: AnyObject {
+public protocol ManagedObjectSerializing {
     init()
-    func valueForKey(key: String) -> AnyObject?
-    func setValue(value: AnyObject?, forKey key: String)
+    func value(forKey key: String) -> Any?
+    func setValue(_ value: Any?, forKey key: String)
 
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
-    static func valueTransformersByPropertyKey() -> [String: NSValueTransformer]
+    static func valueTransformersByPropertyKey() -> [String: ValueTransformer]
     static func relationshipModelClassesByPropertyKey() -> [String: AnyClass]
     static func propertyKeysForManagedObjectUniquing() -> Set<String>
 }
 
 public extension ManagedObjectSerializing {
     static func managedObjectEntityName() -> String {
-        return String(self)
+        return String(describing: self)
     }
 
     static func managedObjectKeysByPropertyKey() -> [String: String] {
         return [:]
     }
 
-    static func valueTransformersByPropertyKey() -> [String: NSValueTransformer] {
+    static func valueTransformersByPropertyKey() -> [String: ValueTransformer] {
         return [:]
     }
 
@@ -56,8 +56,8 @@ public extension ManagedObjectSerializing {
         var keys = [String]()
         var currentMirror = Mirror(reflecting: self)
         while true {
-            keys.appendContentsOf(currentMirror.children.flatMap { $0.label })
-            if let superMirror = currentMirror.superclassMirror() {
+            keys.append(contentsOf: currentMirror.children.flatMap { $0.label })
+            if let superMirror = currentMirror.superclassMirror {
                 currentMirror = superMirror
             } else {
                 break

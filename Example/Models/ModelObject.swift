@@ -12,18 +12,24 @@ import ManagedObjectAdapter
 
 class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
     var id: String?
-    var createdAt: NSDate?
-    var updatedAt: NSDate?
+    var createdAt: Date?
+    var updatedAt: Date?
 
-    required override init() { }
+    required override init() {
+        super.init()
+    }
 
-    required init?(_ map: Map) { }
+    required init?(map: Map) {
 
-    convenience init?(_ JSON: AnyObject) {
+    }
+
+    convenience init?(_ JSON: Any?) {
         self.init()
-        if let JSON = JSON as? [String: AnyObject] {
-            let map = Map(mappingType: .FromJSON, JSONDictionary: JSON)
-            mapping(map)
+        if let JSON = JSON as? [String: Any] {
+            let map = Map(mappingType: .fromJSON, JSON: JSON)
+            mapping(map: map)
+        } else {
+            return nil
         }
     }
 
@@ -37,7 +43,7 @@ class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
         return [:]
     }
 
-    class func valueTransformersByPropertyKey() -> [String: NSValueTransformer] {
+    class func valueTransformersByPropertyKey() -> [String: ValueTransformer] {
         return [:]
     }
 
@@ -52,8 +58,8 @@ class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
 
 class DateTransform: DateFormatterTransform {
     init() {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "GMT")
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         super.init(dateFormatter: dateFormatter)
     }
