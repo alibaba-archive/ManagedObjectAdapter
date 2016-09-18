@@ -123,6 +123,7 @@ public extension ManagedObjectSerializing {
         return model
     }
 
+    @discardableResult
     public func toManagedObject(in context: NSManagedObjectContext) -> NSManagedObject? {
         let entityName = type(of: self).managedObjectEntityName()
         let valueTransformers = type(of: self).valueTransformersByPropertyKey()
