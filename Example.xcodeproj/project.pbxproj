@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ACC596371DEC1E9500A06FF7 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */; };
+		ACC5963A1DEC1F3600A06FF7 /* ManagedObjectAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACC596391DEC1F3600A06FF7 /* ManagedObjectAdapter.framework */; };
 		D3283CAE1D48812300E1B445 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CAD1D48812300E1B445 /* AppDelegate.swift */; };
 		D3283CB01D48812300E1B445 /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3283CAF1D48812300E1B445 /* ExampleViewController.swift */; };
 		D3283CB31D48812300E1B445 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3283CB11D48812300E1B445 /* Main.storyboard */; };
 		D3283CB51D48812300E1B445 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3283CB41D48812300E1B445 /* Assets.xcassets */; };
-		D3283CC51D4883AF00E1B445 /* ManagedObjectAdapter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; };
-		D3283CC61D4883AF00E1B445 /* ManagedObjectAdapter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D35FFC381D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D35FFC361D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodeld */; };
 		D37EE7341D5B433200AA85B5 /* ArrayValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37EE7331D5B433200AA85B5 /* ArrayValueTransformer.swift */; };
 		D38016DA1D5B0EE7004DB625 /* ObjectValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38016D91D5B0EE7004DB625 /* ObjectValueTransformer.swift */; };
@@ -24,7 +24,6 @@
 		D3828F441D4A0EFA00F70E02 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F431D4A0EFA00F70E02 /* Project.swift */; };
 		D3828F461D4A102400F70E02 /* ModelObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F451D4A102400F70E02 /* ModelObject.swift */; };
 		D3828F481D4A10DA00F70E02 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = D3828F471D4A10DA00F70E02 /* Cartfile */; };
-		D3828F4B1D4A125C00F70E02 /* ObjectMapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */; };
 		D3828F4D1D4A192000F70E02 /* Recurrence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F4C1D4A192000F70E02 /* Recurrence.swift */; };
 		D3828F4F1D4A26CE00F70E02 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F4E1D4A26CE00F70E02 /* ProjectsViewController.swift */; };
 		D3828F511D4A280E00F70E02 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3828F501D4A280E00F70E02 /* EventsViewController.swift */; };
@@ -39,7 +38,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D3283CC61D4883AF00E1B445 /* ManagedObjectAdapter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,13 +45,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		ACC596391DEC1F3600A06FF7 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ManagedObjectAdapter.framework; path = "../../../Library/Developer/Xcode/DerivedData/ManagedObjectAdapter-gwekkrcwhkqlwmboppewrhqiimyz/Build/Products/Debug-iphonesimulator/ManagedObjectAdapter.framework"; sourceTree = "<group>"; };
 		D3283CAA1D48812300E1B445 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3283CAD1D48812300E1B445 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3283CAF1D48812300E1B445 /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
 		D3283CB21D48812300E1B445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3283CB41D48812300E1B445 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3283CB91D48812300E1B445 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = ManagedObjectAdapter.framework; path = "/Users/hongxin/Library/Developer/Xcode/DerivedData/ManagedObjectAdapter-chxqragpqvwakbcjbjsfbvtqliio/Build/Products/Debug-iphoneos/ManagedObjectAdapter.framework"; sourceTree = "<absolute>"; };
 		D35FFC371D4A0196009AFE53 /* ManagedObjectAdapter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ManagedObjectAdapter.xcdatamodel; sourceTree = "<group>"; };
 		D37EE7331D5B433200AA85B5 /* ArrayValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayValueTransformer.swift; sourceTree = "<group>"; };
 		D38016D91D5B0EE7004DB625 /* ObjectValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectValueTransformer.swift; sourceTree = "<group>"; };
@@ -78,21 +76,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3283CC51D4883AF00E1B445 /* ManagedObjectAdapter.framework in Frameworks */,
-				D3828F4B1D4A125C00F70E02 /* ObjectMapper.framework in Frameworks */,
+				ACC5963A1DEC1F3600A06FF7 /* ManagedObjectAdapter.framework in Frameworks */,
+				ACC596371DEC1E9500A06FF7 /* ObjectMapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ACC596381DEC1F3500A06FF7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ACC596391DEC1F3600A06FF7 /* ManagedObjectAdapter.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D3283CA11D48812300E1B445 = {
 			isa = PBXGroup;
 			children = (
 				D3828F4A1D4A125C00F70E02 /* ObjectMapper.framework */,
-				D3283CC41D4883AF00E1B445 /* ManagedObjectAdapter.framework */,
 				D3283CAC1D48812300E1B445 /* Example */,
 				D3283CAB1D48812300E1B445 /* Products */,
+				ACC596381DEC1F3500A06FF7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

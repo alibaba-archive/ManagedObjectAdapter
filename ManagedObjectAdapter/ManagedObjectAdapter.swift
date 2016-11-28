@@ -77,6 +77,10 @@ public extension ManagedObjectSerializing {
                     let transformedValue = valueTransformer.reverseTransformedValue(value)
                     model.setValue(transformedValue, forKey: propertyKey)
                 } else {
+                    let attribute: NSAttributeDescription = propertyDescription as! NSAttributeDescription
+                    if attribute.attributeValueClassName == "NSNumber"  && value == nil {
+                        value = NSNumber(value: 0)
+                    }
                     model.setValue(value, forKey: propertyKey)
                 }
             case is NSRelationshipDescription:
