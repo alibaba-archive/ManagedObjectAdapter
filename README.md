@@ -31,6 +31,7 @@ protocol ManagedObjectSerializing {
 You can use ManagedObjectAdapter like this:
 
 ```swift
+@objcMembers
 class TestModel: NSObject, ManagedObjectSerializing {
     var id: String?
 
