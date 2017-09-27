@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 import ManagedObjectAdapter
 
+@objcMembers
 class ModelObject: NSObject, Mappable, ManagedObjectSerializing {
     var id: String?
     var createdAt: Date?

@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-class ObjectValueTransformer<T: ModelObject>: ValueTransformer where T: Mappable {
+class ObjectValueTransformer<T: ModelObject>: ValueTransformer {
     override func transformedValue(_ value: Any?) -> Any? {
         if let value = value as? T {
             let json = value.toJSON()

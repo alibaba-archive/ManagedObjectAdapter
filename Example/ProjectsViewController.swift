@@ -27,11 +27,11 @@ class ProjectsViewController: UITableViewController {
 
         }
         print("\n********** Transferred ManagedObject **********")
-        print(moProject)
+        print(moProject ?? "moProject is nil")
 
         let projectModel = Project.model(from: moProject!)
         print("\n********** Transferred Model **********")
-        print(projectModel)
+        print(projectModel ?? "projectModel is nil")
         if let firstEvent = projectModel?.events?.first {
             print(firstEvent)
         }

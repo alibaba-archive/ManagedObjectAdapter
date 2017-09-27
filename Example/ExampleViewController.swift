@@ -17,7 +17,7 @@ class ExampleViewController: UITableViewController {
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(CoreDataManager.coreDataStorePath)
+        print(CoreDataManager.coreDataStorePath ?? "coreDataStorePath is nil")
         setupUI()
         loadData()
 
@@ -29,11 +29,11 @@ class ExampleViewController: UITableViewController {
 
         }
         print("\n********** Transferred ManagedObject **********")
-        print(moOrg)
+        print(moOrg ?? "moOrg is nil")
 
         let orgModel = Organization.model(from: moOrg!)
         print("\n********** Transferred Model **********")
-        print(orgModel)
+        print(orgModel ?? "orgModel is nil")
         if let firstProject = orgModel?.projects?.first {
             print(firstProject)
         }
