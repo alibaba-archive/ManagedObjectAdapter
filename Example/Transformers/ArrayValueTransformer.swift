@@ -23,7 +23,7 @@ class ArrayValueTransformer<T: ModelObject>: ValueTransformer {
             guard let jsonArray = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Any] else {
                 return nil
             }
-            return jsonArray.flatMap { Mapper<T>().map(JSONObject: $0) }
+            return jsonArray.compactMap { Mapper<T>().map(JSONObject: $0) }
         }
         return nil
     }

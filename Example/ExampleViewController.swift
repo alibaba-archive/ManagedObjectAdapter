@@ -58,7 +58,7 @@ class ExampleViewController: UITableViewController {
             return
         }
 
-        guard let organizations = json?.flatMap({ (object) -> Organization? in
+        guard let organizations = json?.compactMap({ (object) -> Organization? in
             return Organization(object)
         }) else {
             return

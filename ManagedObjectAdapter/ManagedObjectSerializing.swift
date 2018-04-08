@@ -56,7 +56,7 @@ public extension ManagedObjectSerializing {
         var keys = [String]()
         var currentMirror = Mirror(reflecting: self)
         while true {
-            keys.append(contentsOf: currentMirror.children.flatMap { $0.label })
+            keys.append(contentsOf: currentMirror.children.compactMap { $0.label })
             if let superMirror = currentMirror.superclassMirror {
                 currentMirror = superMirror
             } else {

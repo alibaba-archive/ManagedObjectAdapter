@@ -93,7 +93,7 @@ public extension ManagedObjectSerializing {
                     var models: [Any]?
                     perform(in: managedObject.managedObjectContext, block: {
                         if let relationshipCollection = value {
-                            models = (relationshipCollection as AnyObject).objectEnumerator().allObjects.flatMap({ (object) -> Any? in
+                            models = (relationshipCollection as AnyObject).objectEnumerator().allObjects.compactMap({ (object) -> Any? in
                                 if let nestedManagedObject = object as? NSManagedObject, let nestedClass = nestedClass as? ManagedObjectSerializing.Type {
                                     return nestedClass.model(from: nestedManagedObject, processedModels: mutableProcessedModels)
                                 }

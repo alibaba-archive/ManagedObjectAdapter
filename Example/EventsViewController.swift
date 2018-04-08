@@ -49,7 +49,7 @@ class EventsViewController: UITableViewController {
             return
         }
         
-        guard let events = json?.flatMap({ (object) -> Event? in
+        guard let events = json?.compactMap({ (object) -> Event? in
             return Event(object)
         }) else {
             return

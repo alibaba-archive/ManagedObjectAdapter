@@ -57,7 +57,7 @@ class ProjectsViewController: UITableViewController {
             return
         }
 
-        guard let projects = json?.flatMap({ (object) -> Project? in
+        guard let projects = json?.compactMap({ (object) -> Project? in
             return Project(object)
         }) else {
             return
