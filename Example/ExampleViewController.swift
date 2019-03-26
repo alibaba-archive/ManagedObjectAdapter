@@ -40,12 +40,12 @@ class ExampleViewController: UITableViewController {
     }
 
     // MARK: - Helper
-    fileprivate func setupUI() {
+    private func setupUI() {
         navigationItem.title = "Example"
         tableView.tableFooterView = UIView()
     }
 
-    fileprivate func loadData() {
+    private func loadData() {
         guard let path = Bundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.path(forResource: "organizations", ofType: "json") ?? Bundle.main.path(forResource: "organizations", ofType: "json") else {
             return
         }
@@ -58,11 +58,7 @@ class ExampleViewController: UITableViewController {
             return
         }
 
-        guard let organizations = json?.compactMap({ (object) -> Organization? in
-            return Organization(object)
-        }) else {
-            return
-        }
+        let organizations = json.compactMap { Organization($0) }
         self.organizations = organizations
         tableView.reloadData()
     }

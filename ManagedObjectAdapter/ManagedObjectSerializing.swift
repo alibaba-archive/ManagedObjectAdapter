@@ -9,10 +9,6 @@
 import Foundation
 
 public protocol ManagedObjectSerializing {
-    init()
-    func value(forKey key: String) -> Any?
-    func setValue(_ value: Any?, forKey key: String)
-
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
     static func valueTransformersByPropertyKey() -> [String: ValueTransformer]
@@ -42,8 +38,8 @@ public extension ManagedObjectSerializing {
     }
 }
 
-public extension ManagedObjectSerializing {
-    public static var propertyKeys: Set<String> {
+public extension ManagedObjectSerializing where Self: NSObject {
+    static var propertyKeys: Set<String> {
         if let cachedKeys = objc_getAssociatedObject(self, &AssociatedKeys.cachedPropertyKeys) as? Set<String> {
             return cachedKeys
         }
@@ -52,7 +48,7 @@ public extension ManagedObjectSerializing {
         return keys
     }
 
-    public var propertyKeys: Set<String> {
+    var propertyKeys: Set<String> {
         var keys = [String]()
         var currentMirror = Mirror(reflecting: self)
         while true {

@@ -38,13 +38,13 @@ class ProjectsViewController: UITableViewController {
     }
 
     // MARK: - Life cycle
-    fileprivate func setupUI() {
+    private func setupUI() {
         navigationItem.title = "Projects"
         tableView.tableFooterView = UIView()
     }
 
     // MARK: - Helper
-    fileprivate func loadData() {
+    private func loadData() {
         guard let path = Bundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.path(forResource: "projects", ofType: "json") ?? Bundle.main.path(forResource: "projects", ofType: "json") else {
             return
         }
@@ -57,11 +57,7 @@ class ProjectsViewController: UITableViewController {
             return
         }
 
-        guard let projects = json?.compactMap({ (object) -> Project? in
-            return Project(object)
-        }) else {
-            return
-        }
+        let projects = json.compactMap { Project($0) }
         self.projects = projects
         tableView.reloadData()
     }

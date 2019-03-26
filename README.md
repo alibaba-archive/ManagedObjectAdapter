@@ -12,14 +12,10 @@ github "teambition/ManagedObjectAdapter"
 ```
 
 ### Usage
-Models that you want to use ManagedObjectAdapter must conform to ```ManagedObjectSerializing``` protocol.
+Models that you want to use ManagedObjectAdapter must be a subclass of ```NSObject``` and conform to ```ManagedObjectSerializing``` protocol.
 
 ```swift
 protocol ManagedObjectSerializing {
-    init()
-    func value(forKey key: String) -> Any?
-    func setValue(_ value: Any?, forKey key: String)
-
     static func managedObjectEntityName() -> String
     static func managedObjectKeysByPropertyKey() -> [String: String]
     static func valueTransformersByPropertyKey() -> [String: ValueTransformer]
@@ -50,7 +46,7 @@ class TestModel: NSObject, ManagedObjectSerializing {
         return ["downloadURL": "downloadUrl"]
     }
 
-    static func valueTransformersByPropertyKey() -> [String : ValueTransformer] {
+    static func valueTransformersByPropertyKey() -> [String: ValueTransformer] {
         return ["transformableModel": TransformableModelTransformer()]
     }
 
