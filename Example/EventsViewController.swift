@@ -31,12 +31,12 @@ class EventsViewController: UITableViewController {
     }
 
     // MARK: - Helper
-    fileprivate func setupUI() {
+    private func setupUI() {
         navigationItem.title = "Events"
         tableView.tableFooterView = UIView()
     }
 
-    fileprivate func loadData() {
+    private func loadData() {
         guard let path = Bundle(identifier: "Teambition.ManagedObjectAdapter.Example")?.path(forResource: "events", ofType: "json") ?? Bundle.main.path(forResource: "events", ofType: "json") else {
             return
         }
@@ -49,11 +49,7 @@ class EventsViewController: UITableViewController {
             return
         }
         
-        guard let events = json?.compactMap({ (object) -> Event? in
-            return Event(object)
-        }) else {
-            return
-        }
+        let events = json.compactMap { Event($0) }
         self.events = events
         tableView.reloadData()
     }
