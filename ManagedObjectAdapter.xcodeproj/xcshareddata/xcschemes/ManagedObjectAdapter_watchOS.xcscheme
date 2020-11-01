@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3283C951D4880C500E1B445"
+               BlueprintIdentifier = "D3D39DFD1D6AC3B600AECD76"
                BuildableName = "ManagedObjectAdapter.framework"
-               BlueprintName = "ManagedObjectAdapter iOS"
+               BlueprintName = "ManagedObjectAdapter watchOS"
                ReferencedContainer = "container:ManagedObjectAdapter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,28 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D3D39DED1D6AA90F00AECD76"
-               BuildableName = "ManagedObjectAdapterTests.xctest"
-               BlueprintName = "ManagedObjectAdapterTests"
-               ReferencedContainer = "container:ManagedObjectAdapter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3283C951D4880C500E1B445"
-            BuildableName = "ManagedObjectAdapter.framework"
-            BlueprintName = "ManagedObjectAdapter iOS"
-            ReferencedContainer = "container:ManagedObjectAdapter.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -64,14 +43,12 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3283C951D4880C500E1B445"
+            BlueprintIdentifier = "D3D39DFD1D6AC3B600AECD76"
             BuildableName = "ManagedObjectAdapter.framework"
-            BlueprintName = "ManagedObjectAdapter iOS"
+            BlueprintName = "ManagedObjectAdapter watchOS"
             ReferencedContainer = "container:ManagedObjectAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -82,9 +59,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D3283C951D4880C500E1B445"
+            BlueprintIdentifier = "D3D39DFD1D6AC3B600AECD76"
             BuildableName = "ManagedObjectAdapter.framework"
-            BlueprintName = "ManagedObjectAdapter iOS"
+            BlueprintName = "ManagedObjectAdapter watchOS"
             ReferencedContainer = "container:ManagedObjectAdapter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
