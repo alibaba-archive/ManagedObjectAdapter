@@ -5,7 +5,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ManagedObjectAdapter'
-  s.version          = '0.0.7'
+  s.version          = '0.0.8'
   s.summary          = 'ManagedObjectAdapter is a lightweight adapter for the converts between Model instances and Core Data managed objects.'
   s.description      = <<-DESC
   ManagedObjectAdapter is a lightweight adapter for the converts between Model instances and Core Data managed objects.
